@@ -1,1 +1,145 @@
+SIGNIX ASSET LIST
 
+Last Updated: 2025-09-04
+Founder: Patience Wambui
+
+INSTRUCTIONS FOR CONTRIBUTORS:
+1. All KSL videos must be filmed by native KSL signers
+2. Video format: .mp4 or .webm, 720p minimum, 16:9 aspect ratio
+3. No audio tracks needed. Add text captions burned-in if possible
+4. Thumbnails: .jpg, 640x360px, clear view of handshape
+5. Naming: category-signname.mp4  e.g. greetings-hello.mp4
+
+FOLDER STRUCTURE:
+/images/ - Thumbnails, logos, UI graphics
+/videos/ - KSL sign videos organized by category
+
+CORE BRAND ASSETS
+
+images/Signix-logo.png - Main logo, 512x512px, transparent background
+images/Signix-logo-dark.png - Dark mode variant
+images/favicon.ico - Browser tab icon
+images/hero-deaf-students.jpg - Landing page hero, deaf learners in class
+images/pattern-ksl.svg - Background pattern for empty states
+
+KSL VIDEO THUMBNAILS
+
+images/thumbs/greetings-hello.jpg
+images/thumbs/greetings-good-morning.jpg
+images/thumbs/greetings-how-are-you.jpg
+images/thumbs/greetings-thank-you.jpg
+images/thumbs/greetings-goodbye.jpg
+images/thumbs/greetings-please.jpg
+images/thumbs/greetings-sorry.jpg
+
+images/thumbs/family-mother.jpg
+images/thumbs/family-father.jpg
+images/thumbs/family-sister.jpg
+images/thumbs/family-brother.jpg
+images/thumbs/family-baby.jpg
+images/thumbs/family-grandmother.jpg
+images/thumbs/family-grandfather.jpg
+
+images/thumbs/numbers-1.jpg
+images/thumbs/numbers-2.jpg
+images/thumbs/numbers-3.jpg
+images/thumbs/numbers-4.jpg
+images/thumbs/numbers-5.jpg
+images/thumbs/numbers-6-10.jpg
+images/thumbs/numbers-11-20.jpg
+
+images/thumbs/time-today.jpg
+images/thumbs/time-tomorrow.jpg
+images/thumbs/time-yesterday.jpg
+images/thumbs/time-morning.jpg
+images/thumbs/time-afternoon.jpg
+images/thumbs/time-night.jpg
+
+images/thumbs/school-teacher.jpg
+images/thumbs/school-student.jpg
+images/thumbs/school-book.jpg
+images/thumbs/school-learn.jpg
+images/thumbs/school-question.jpg
+
+images/thumbs/workplace-work.jpg
+images/thumbs/workplace-meeting.jpg
+images/thumbs/workplace-email.jpg
+images/thumbs/workplace-interview.jpg
+
+KSL VIDEOS BY CATEGORY
+
+videos/greetings/hello.mp4 - HABARI / HELLO
+videos/greetings/good-morning.mp4 - HABARI ZA ASUBUHI
+videos/greetings/how-are-you.mp4 - HABARI YAKO?
+videos/greetings/fine.mp4 - NIKO SALAMA
+videos/greetings/thank-you.mp4 - ASANTE
+videos/greetings/goodbye.mp4 - KWAHERI
+videos/greetings/please.mp4 - TAFADHALI
+videos/greetings/sorry.mp4 - SAMAHANI
+
+videos/family/mother.mp4 - MAMA
+videos/family/father.mp4 - BABA
+videos/family/sister.mp4 - DADA
+videos/family/brother.mp4 - KAKA
+videos/family/baby.mp4 - MTOTO
+videos/family/grandmother.mp4 - NYANYA
+videos/family/grandfather.mp4 - BABU
+
+videos/numbers/one.mp4 - MOJA
+videos/numbers/two.mp4 - MBILI
+videos/numbers/three.mp4 - TATU
+videos/numbers/four.mp4 - NNE
+videos/numbers/five.mp4 - TANO
+videos/numbers/six-ten.mp4 - NAMBA 6-10
+
+videos/time/today.mp4 - LEO
+videos/time/tomorrow.mp4 - KESHO
+videos/time/yesterday.mp4 - JANA
+videos/time/morning.mp4 - ASUBUHI
+videos/time/afternoon.mp4 - MCHANA
+videos/time/night.mp4 - USIKU
+
+videos/school/teacher.mp4 - MWALIMU
+videos/school/student.mp4 - MWANAFUNZI
+videos/school/book.mp4 - KITABU
+videos/school/learn.mp4 - JIFUNZA
+videos/school/question.mp4 - SWALI
+
+videos/grammar/question-marker.mp4 - SWALI marker for KSL grammar
+videos/grammar/negation.mp4 - HAPANA / NOT marker
+videos/grammar/past-tense.mp4 - Past tense indicator
+
+videos/workplace/work.mp4 - KAZI
+videos/workplace/meeting.mp4 - MKUTANO
+videos/workplace/email.mp4 - BARUA PEPE
+videos/workplace/interview.mp4 - MAHOJIANO
+
+UI & DASHBOARD ICONS
+
+images/icons/streak-fire.svg
+images/icons/revision-deck.svg
+images/icons/progress-chart.svg
+images/icons/bookmark.svg
+images/icons/play-circle.svg
+images/icons/dashboard.svg
+images/icons/library.svg
+images/icons/dictionary.svg
+
+PLACEHOLDERS - REPLACE THESE
+
+All current video URLs in code point to placeholder: 
+https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm
+
+Replace with real KSL videos before launch.
+
+CONTRIBUTOR GUIDELINES
+
+1. Film in good lighting, plain background
+2. Signer wears solid dark color, no patterns
+3. Start/end each video with hands at rest position
+4. Hold final handshape for 1 second before ending
+5. Include KSL gloss as filename and in captions
+6. Get consent from all signers before uploading
+
+Contact: Patience Wambui - 0732472477
+Email: patience@signix.co.ke
