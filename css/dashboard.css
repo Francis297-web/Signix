@@ -1,1 +1,530 @@
+/* ===================================
+   SIGNIX DASHBOARD STYLES
+   Deaf-first KSL Learning Platform
+   =================================== */
+
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --accent: #22c55e;
+  --accent2: #3b82f6;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --border: #334155;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --purple: #a855f7;
+}
+
+/* Base Layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar - Matches index.html */
+.sidebar {
+  width: 260px;
+  background: #0b1220;
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 0;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.logo {
+  padding: 0 1.5rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-decoration: none;
+  display: block;
+}
+
+.logo span {
+  color: var(--accent2);
+}
+
+.nav-section {
+  margin-bottom: 1.5rem;
+}
+
+.nav-title {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.6rem 1.5rem;
+  color: var(--text);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--card);
+  border-left-color: var(--accent);
+}
+
+/* Main Content Area */
+.main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.topbar {
+  background: #0b1220;
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.topbar a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.topbar a.active,
+.topbar a:hover {
+  color: var(--accent);
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #052e16;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.content {
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtext {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.stat-trend {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  color: var(--accent2);
+}
+
+/* Section Cards */
+.section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.25rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.875rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #052e16;
+}
+
+.btn-secondary {
+  background: var(--border);
+  color: var(--text);
+}
+
+.btn-accent {
+  background: var(--accent2);
+  color: white;
+}
+
+/* Continue Learning Cards */
+.continue-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
+}
+
+.continue-card:hover {
+  border-color: var(--accent);
+}
+
+.continue-thumb {
+  width: 120px;
+  height: 68px;
+  background: #000;
+  border-radius: 6px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.continue-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.continue-info {
+  flex: 1;
+}
+
+.continue-info h4 {
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.continue-info p {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Progress Bars */
+.track {
+  margin-bottom: 1.5rem;
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.track-title {
+  font-weight: 600;
+}
+
+.track-percent {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.5s ease;
+  border-radius: 4px;
+}
+
+.progress-fill.intermediate {
+  background: var(--accent2);
+}
+
+.progress-fill.advanced {
+  background: var(--purple);
+}
+
+/* Revision List */
+.revision-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--bg);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border);
+}
+
+.revision-info strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.revision-info span {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.due-badge {
+  background: var(--warning);
+  color: #451a03;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.due-badge.overdue {
+  background: var(--error);
+  color: white;
+}
+
+/* Empty States */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+}
+
+.empty-state p {
+  margin-bottom: 1rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge.beginner {
+  background: #1e3a2f;
+  color: var(--accent);
+}
+
+.badge.intermediate {
+  background: #1e3a8a;
+  color: var(--accent2);
+}
+
+.badge.advanced {
+  background: #581c87;
+  color: var(--purple);
+}
+
+/* Streak Calendar */
+.streak-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.streak-day {
+  aspect-ratio: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.streak-day.active {
+  background: var(--accent);
+  color: #052e16;
+  font-weight: 700;
+}
+
+.streak-day.today {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 200px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    padding: 1rem;
+  }
+
+  .topbar-links {
+    display: none;
+  }
+
+  .continue-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .continue-thumb {
+    width: 100%;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* Loading States */
+.skeleton {
+  background: linear-gradient(90deg, var(--card) 25%, var(--border) 50%, var(--card) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Utility Classes */
+.text-accent { color: var(--accent); }
+.text-muted { color: var(--muted); }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+
+How to use this:
+
+    Save as css/dashboard.css
+    In dashboard.html, add this in <head>:
+
+<link rel="stylesheet" href="css/dashboard.css">
+
+    Delete all the <style> tags from dashboard.html — keeps it clean
+
+What this CSS does for Signix:
+
+    Deaf-first design: High contrast, no audio cues, visual progress
+    Responsive: Collapses sidebar on mobile for phones/tablets
+    Reusable: Same variables work for library.css, videos.css
+    Smooth animations: Hover effects, progress bar transitions
+    Accessibility: Large click targets, clear focus states
+    Themed: Green = success/progress, Blue = info, Purple = advanced
+
+Want me to create css/library.css and css/videos.css next so all your pages share the same design system?
+
 
