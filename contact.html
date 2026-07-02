@@ -25,7 +25,7 @@
   }
 
   /* Sidebar - matches index.html */
- .sidebar {
+.sidebar {
     width: 260px;
     background: #0b1220;
     border-right: 1px solid var(--border);
@@ -33,7 +33,7 @@
     overflow-y: auto;
     flex-shrink: 0;
   }
- .logo {
+.logo {
     padding: 0 1.5rem 1.5rem;
     font-size: 1.5rem;
     font-weight: 800;
@@ -41,33 +41,33 @@
     text-decoration: none;
     display: block;
   }
- .logo span { color: var(--accent2); }
- .nav-section { margin-bottom: 1.5rem; }
- .nav-title {
+.logo span { color: var(--accent2); }
+.nav-section { margin-bottom: 1.5rem; }
+.nav-title {
     padding: 0.5rem 1.5rem;
     font-size: 0.75rem;
     text-transform: uppercase;
     color: var(--muted);
     letter-spacing: 0.05em;
   }
- .nav-link {
+.nav-link {
     display: block;
     padding: 0.6rem 1.5rem;
     color: var(--text);
     text-decoration: none;
     border-left: 3px solid transparent;
   }
- .nav-link:hover,.nav-link.active {
+.nav-link:hover,.nav-link.active {
     background: var(--card);
     border-left-color: var(--accent);
   }
 
   /* Main content */
- .main {
+.main {
     flex: 1;
     overflow-y: auto;
   }
- .topbar {
+.topbar {
     background: #0b1220;
     border-bottom: 1px solid var(--border);
     padding: 1rem 2rem;
@@ -77,22 +77,22 @@
     top: 0;
     z-index: 10;
   }
- .topbar a {
+.topbar a {
     color: var(--muted);
     text-decoration: none;
     font-weight: 600;
   }
- .topbar a.active,.topbar a:hover { color: var(--accent); }
+.topbar a.active,.topbar a:hover { color: var(--accent); }
 
- .content {
+.content {
     padding: 2rem;
     max-width: 1100px;
   }
 
   h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
- .subtext { color: var(--muted); margin-bottom: 2rem; font-size: 1.05rem; }
+.subtext { color: var(--muted); margin-bottom: 2rem; font-size: 1.05rem; }
 
- .contact-grid {
+.contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
@@ -100,24 +100,405 @@
   }
 
   /* Contact Info Card */
- .contact-info {
+.contact-info {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 2rem;
   }
- .contact-info h2 {
+.contact-info h2 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--accent);
   }
- .info-item {
+.info-item {
     display: flex;
     gap: 1rem;
     margin-bottom: 1.5rem;
     align-items: flex-start;
   }
- .info-icon {
+.info-icon {
     width: 40px;
     height: 40px;
-    background
+    background: var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+  }
+.info-text h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+.info-text p {
+    color: var(--muted);
+    line-height: 1.6;
+  }
+.info-text a {
+    color: var(--accent2);
+    text-decoration: none;
+  }
+.info-text a:hover { text-decoration: underline; }
+
+.quick-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    transition: transform 0.2s;
+  }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--accent); color: #052e16; }
+.btn-secondary { background: var(--accent2); color: white; }
+.btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  /* Contact Form */
+.contact-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+.contact-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+  }
+.form-group {
+    margin-bottom: 1.5rem;
+  }
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: inherit;
+  }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+.form-group.error {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+  }
+.form-group.invalid input,
+.form-group.invalid select,
+.form-group.invalid textarea {
+    border-color: var(--error);
+  }
+.form-group.invalid.error { display: block; }
+
+.submit-btn {
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--accent);
+    color: #052e16;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+.submit-btn:hover { opacity: 0.9; }
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+.success-message {
+    background: #1e3a2f;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: none;
+  }
+
+  /* Contribute Section */
+.contribute-box {
+    background: linear-gradient(135deg, #1e3a2f, #1e293b);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 3rem;
+    grid-column: 1 / -1;
+  }
+.contribute-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    body { flex-direction: column; }
+  .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+  <aside class="sidebar">
+    <a href="index.html" class="logo">Sign<span>ix</span></a>
+
+    <div class="nav-section">
+      <div class="nav-title">Categories</div>
+      <a class="nav-link" href="index.html#greetings">Greetings</a>
+      <a class="nav-link" href="index.html#family">Family</a>
+      <a class="nav-link" href="index.html#numbers">Numbers</a>
+      <a class="nav-link" href="index.html#time">Time</a>
+      <a class="nav-link" href="index.html#school">School</a>
+      <a class="nav-link" href="index.html#grammar">Grammar</a>
+      <a class="nav-link" href="index.html#storytelling">Storytelling</a>
+      <a class="nav-link" href="index.html#workplace">Workplace KSL</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-title">Tools</div>
+      <a class="nav-link" href="index.html#revision">Revision Deck</a>
+      <a class="nav-link" href="index.html#path">Fluency Path</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link active" href="contact.html">Contact</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <nav class="topbar">
+      <a href="index.html">Home</a>
+      <a href="index.html#path">Fluency Path</a>
+      <a href="index.html#revision">Revision Deck</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+
+    <div class="content">
+      <h1>Contact Signix</h1>
+      <p class="subtext">Questions about KSL? Want to contribute signs? Need help? We’re here for the deaf community and allies.</p>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+
+          <div class="info-item">
+            <div class="info-icon">👤</div>
+            <div class="info-text">
+              <h3>Founder</h3>
+              <p>Patience Wambui<br>Founder & Lead Advocate</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📱</div>
+            <div class="info-text">
+              <h3>Phone / WhatsApp</h3>
+              <p><a href="tel:0732472477">0732 472 477</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+            <div class="info-text">
+              <h3>Email</h3>
+              <p><a href="mailto:contact@signix.co.ke">contact@signix.co.ke</a><br>
+              <a href="mailto:patience@signix.co.ke">patience@signix.co.ke</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <h3>Location</h3>
+              <p>Nairobi, Kenya<br>Serving KSL learners nationwide</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">⏰</div>
+            <div class="info-text">
+              <h3>Response Time</h3>
+              <p>We reply within 24 hours. For urgent KSL interpretation needs, call directly.</p>
+            </div>
+          </div>
+
+          <div class="quick-actions">
+            <a href="https://wa.me/254732472477?text=Habari%20Signix%2C%20I%20need%20help%20with%20KSL" class="btn btn-primary" target="_blank">
+              💬 WhatsApp Us
+            </a>
+            <a href="tel:0732472477" class="btn btn-secondary">
+              📞 Call Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2>Send a Message</h2>
+          <div class="success-message" id="successMsg">
+            ✓ Message sent! Patience or the Signix team will reply within 24 hours.
+          </div>
+
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input type="text" id="name" name="name" required>
+              <div class="error">Please enter your name</div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required>
+              <div class="error">Please enter a valid email</div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="07XX XXX XXX">
+            </div>
+
+            <div class="form-group">
+              <label for="topic">What is this about? *</label>
+              <select id="topic" name="topic" required>
+                <option value="">Select a topic</option>
+                <option value="learning">Help learning KSL</option>
+                <option value="contribute">I want to contribute KSL videos</option>
+                <option value="correction">Report incorrect sign</option>
+                <option value="partnership">Partnership / School program</option>
+                <option value="technical">Technical issue with Signix</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="error">Please select a topic</div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message *</label>
+              <textarea id="message" name="message" required placeholder="Type your message in English or Kiswahili. No audio needed — we read everything."></textarea>
+              <div class="error">Please enter your message</div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Contribute Box -->
+        <div class="contribute-box">
+          <h3>Are you a fluent KSL signer?</h3>
+          <p style="color:var(--text);margin-bottom:1rem;">Signix is built with native signers. If you know KSL and want to help create video content, we’d love to work with you. We pay contributors and credit you on every sign you submit.</p>
+          <a href="mailto:patience@signix.co.ke?subject=KSL%20Contributor%20Application" class="btn btn-outline">Apply to Contribute</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('successMsg');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Clear previous errors
+    document.querySelectorAll('.form-group').forEach(g => g.classList.remove('invalid'));
+
+    // Validate
+    let isValid = true;
+    const requiredFields = form.querySelectorAll('[required]');
+
+    requiredFields.forEach(field => {
+      if (!field.value.trim()) {
+        field.parentElement.classList.add('invalid');
+        isValid = false;
+      }
+      if (field.type === 'email' && field.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(field.value)) {
+          field.parentElement.classList.add('invalid');
+          isValid = false;
+        }
+      }
+    });
+
+    if (!isValid) return;
+
+    // Simulate sending - replace with real backend/Firebase
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    setTimeout(() => {
+      // In production: send to Firebase, EmailJS, or your backend
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        topic: form.topic.value,
+        message: form.message.value,
+        timestamp: new Date().toISOString()
+      };
+      console.log('Form submitted:', formData);
+
+      // Show success
+      successMsg.style.display = 'block';
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+
+      // Scroll to success message
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Hide success after 5s
+      setTimeout(() => {
+        successMsg.style.display = 'none';
+      }, 5000);
+    }, 1000);
+  });
+
+  // Remove error on input
+  form.querySelectorAll('input, select, textarea').forEach(field => {
+    field.addEventListener('input', function() {
+      this.parentElement.classList.remove('invalid');
+    });
+  });
+</script>
+</body>
+</html>
