@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Signix</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=3">
 </head>
 <body>
   <div class="app-layout">
     <aside class="sidebar">
-      <a href="index.html" class="logo">Sign<span>ix</span></a>
+      <a href="index.html" class="logo">
+        <img src="sINGNIFIX.png" alt="Signix" style="height: 40px;">
+      </a>
 
       <div class="nav-section">
         <div class="nav-title">Learning</div>
@@ -45,7 +47,6 @@
           <p class="subtext">Track your KSL fluency journey. Keep your streak going!</p>
         </div>
 
-        <!-- Stats -->
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-value" id="statStreak">0</div>
@@ -69,7 +70,6 @@
           </div>
         </div>
 
-        <!-- Continue Learning -->
         <div class="section">
           <div class="section-header">
             <h2>Continue Learning</h2>
@@ -83,11 +83,9 @@
           </div>
         </div>
 
-        <!-- Fluency Path Progress -->
         <div class="section">
           <div class="section-header">
             <h2>Fluency Path</h2>
-            <a href="index.html#path" class="btn btn-secondary">View Full Path</a>
           </div>
           <div class="track">
             <div class="track-header">
@@ -96,23 +94,8 @@
             </div>
             <div class="progress-bar"><div class="progress-fill" id="beginnerBar"></div></div>
           </div>
-          <div class="track">
-            <div class="track-header">
-              <span>Intermediate - Conversation</span>
-              <span id="intermediatePct">Locked</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" id="intermediateBar"></div></div>
-          </div>
-          <div class="track">
-            <div class="track-header">
-              <span>Advanced - Fluency</span>
-              <span id="advancedPct">Locked</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" id="advancedBar"></div></div>
-          </div>
         </div>
 
-        <!-- Revision Due -->
         <div class="section">
           <div class="section-header">
             <h2>Revision Due Today</h2>
