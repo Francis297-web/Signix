@@ -1,9 +1,8 @@
 // ===================================
-// SIGNIX APP.JS
-// Real KSL Video Database
+// SIGNIX APP.JS - WITH YOUR REAL VIDEOS
 // ===================================
 
-// REAL KSL VIDEO DATABASE - Replace with your own Signix videos
+// KSL DATABASE - Your actual files from GitHub
 const KSL_DATA = {
   greetings: [
     { 
@@ -11,165 +10,56 @@ const KSL_DATA = {
       title: "Hello / Habari", 
       gloss: "HABARI", 
       level: "Beginner", 
-      video: "https://www.youtube.com/embed/UT9FtP-OD1U",
+      video: "Hello-ksl.mp4",
       description: "Standard KSL greeting used any time of day",
-      source: "youtube"
-    },
-    { 
-      id: "good-morning",
-      title: "Good Morning", 
-      gloss: "HABARI ZA ASUBUHI", 
-      level: "Beginner", 
-      video: "https://www.youtube.com/embed/xqYeLV9_vFg",
-      description: "Morning greeting in KSL until noon",
-      source: "youtube"
-    },
-    { 
-      id: "how-are-you",
-      title: "How are you?", 
-      gloss: "HABARI YAKO?", 
-      level: "Beginner", 
-      video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      description: "Asking about wellbeing - common response: MZURI",
-      source: "youtube"
-    },
-    {
-      id: "good-evening",
-      title: "Good Evening",
-      gloss: "HABARI ZA JIONI",
-      level: "Beginner",
-      video: "https://www.youtube.com/embed/kJQP7kiw5Fk",
-      description: "Evening greeting after 4pm",
-      source: "youtube"
+      source: "local"
     }
   ],
   family: [
     { 
-      id: "mother",
-      title: "Mother / Mama", 
-      gloss: "MAMA", 
+      id: "family-members",
+      title: "Family Members", 
+      gloss: "JAMII", 
       level: "Beginner", 
-      video: "https://www.youtube.com/embed/9bZkp7q19f0",
-      description: "Female parent - dominant hand taps chin twice",
-      source: "youtube"
-    },
-    { 
-      id: "father",
-      title: "Father / Baba", 
-      gloss: "BABA", 
-      level: "Beginner", 
-      video: "https://www.youtube.com/embed/L_jWHffIx5E",
-      description: "Male parent - dominant hand taps forehead",
-      source: "youtube"
-    },
-    {
-      id: "brother",
-      title: "Brother / Kaka",
-      gloss: "KAKA",
-      level: "Beginner",
-      video: "https://www.youtube.com/embed/hFZFjoX2cGg",
-      description: "Male sibling",
-      source: "youtube"
-    },
-    {
-      id: "sister",
-      title: "Sister / Dada",
-      gloss: "DADA",
-      level: "Beginner",
-      video: "https://www.youtube.com/embed/fJ9rUzIMcZQ",
-      description: "Female sibling",
-      source: "youtube"
+      video: "family members-ksl.mp4",
+      description: "Signs for mother, father, brother, sister",
+      source: "local"
     }
   ],
   numbers: [
     { 
-      id: "numbers-1-5",
-      title: "Numbers 1 to 5", 
-      gloss: "NAMBA 1-5", 
+      id: "alphabet-numbers",
+      title: "KSL Alphabet & Numbers", 
+      gloss: "ALFABETI NA NAMBA", 
       level: "Beginner", 
-      video: "https://www.youtube.com/embed/3JZ_D3ELwOQ",
-      description: "Basic counting - palm orientation matters",
-      source: "youtube"
-    },
-    {
-      id: "numbers-6-10",
-      title: "Numbers 6 to 10",
-      gloss: "NAMBA 6-10",
-      level: "Beginner",
-      video: "https://www.youtube.com/embed/e-ORhEE9VVg",
-      description: "Continue counting in KSL",
-      source: "youtube"
+      video: "ksl_alphabet_numbers_web_v0.2.pdf",
+      description: "Fingerspelling A-Z and numbers 1-100 - PDF download",
+      source: "pdf"
     }
   ],
   time: [
     { 
-      id: "today",
-      title: "Today / Leo", 
-      gloss: "LEO", 
+      id: "telling-time",
+      title: "Telling Time", 
+      gloss: "KUSEMA SAA", 
       level: "Beginner", 
-      video: "https://www.youtube.com/embed/YQHsXMglC9A",
-      description: "Current day - hand moves down from chin",
-      source: "youtube"
-    },
-    {
-      id: "tomorrow",
-      title: "Tomorrow / Kesho",
-      gloss: "KESHO",
-      level: "Beginner",
-      video: "https://www.youtube.com/embed/astISOttCQ0",
-      description: "Next day - hand arcs forward",
-      source: "youtube"
-    },
-    {
-      id: "yesterday",
-      title: "Yesterday / Jana",
-      gloss: "JANA",
-      level: "Beginner",
-      video: "https://www.youtube.com/embed/hTWKbfoikeg",
-      description: "Previous day - hand arcs backward",
-      source: "youtube"
+      video: "telling time-ksl.mp4",
+      description: "How to sign time in KSL - hours, today, tomorrow",
+      source: "local"
     }
   ],
   school: [
-    {
+    { 
       id: "school",
-      title: "School / Shule",
-      gloss: "SHULE",
-      level: "Intermediate",
-      video: "https://www.youtube.com/embed/uelHwf8o7_U",
-      description: "Educational institution",
-      source: "youtube"
-    },
-    {
-      id: "teacher",
-      title: "Teacher / Mwalimu",
-      gloss: "MWALIMU",
-      level: "Intermediate",
-      video: "https://www.youtube.com/embed/kXYiU_JMY_4",
-      description: "Person who teaches",
-      source: "youtube"
+      title: "School / Shule", 
+      gloss: "SHULE", 
+      level: "Intermediate", 
+      video: "school sign-ksl.mp4",
+      description: "Educational institution sign",
+      source: "local"
     }
   ],
-  grammar: [
-    {
-      id: "what",
-      title: "What / Nini",
-      gloss: "NINI",
-      level: "Intermediate",
-      video: "https://www.youtube.com/embed/RgKAFK5djSk",
-      description: "WH-question word",
-      source: "youtube"
-    },
-    {
-      id: "where",
-      title: "Where / Wapi",
-      gloss: "WAPI",
-      level: "Intermediate",
-      video: "https://www.youtube.com/embed/LsoLEjrDogU",
-      description: "Location question",
-      source: "youtube"
-    }
-  ],
+  grammar: [],
   storytelling: [],
   workplace: []
 };
@@ -224,25 +114,43 @@ function renderVideoCard(video) {
   const isCompleted = completedCards.includes(video.id);
   const isInRevision = revisionDeck.some(c => c.id === video.id);
   
+  // Handle PDF vs Video
+  if (video.source === 'pdf') {
+    return `
+      <div class="video-card" data-id="${video.id}">
+        <div class="video-thumb" style="background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%); display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center; color: white;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">📄</div>
+            <div style="font-weight: 700;">PDF Resource</div>
+          </div>
+          <span class="level-badge ${video.level.toLowerCase()}">${video.level}</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${video.title}</div>
+          <div class="card-gloss">${video.gloss}</div>
+          <div class="card-actions">
+            <a href="${video.video}" target="_blank" class="btn btn-primary">Download PDF</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Regular video card
   return `
     <div class="video-card" data-id="${video.id}">
-      <div class="video-thumb" onclick="playVideo('${video.video}', '${video.title}', '${video.source}')">
-        <iframe 
-          src="${video.video}" 
-          title="${video.title}"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen
-          loading="lazy">
-        </iframe>
+      <div class="video-thumb" onclick="playVideo('${video.video}', '${video.title}')">
+        <video muted loop playsinline preload="metadata">
+          <source src="${video.video}" type="video/mp4">
+        </video>
         <span class="level-badge ${video.level.toLowerCase()}">${video.level}</span>
       </div>
       <div class="card-body">
         <div class="card-title">${video.title}</div>
         <div class="card-gloss">${video.gloss}</div>
         <div class="card-actions">
-          <button class="btn btn-primary" onclick="markComplete('${video.id}')">
-            ${isCompleted ? '✓ Completed' : 'Mark Complete'}
+          <button class="btn ${isCompleted ? 'btn-saved' : 'btn-primary'}" onclick="markComplete('${video.id}')">
+            ${isCompleted ? '✓ Mastered' : 'Mark Complete'}
           </button>
           <button class="btn ${isInRevision ? 'btn-saved' : 'btn-secondary'}" onclick="toggleRevision('${video.id}', '${video.title}')">
             ${isInRevision ? '★ In Deck' : 'Add to Revision'}
@@ -256,13 +164,22 @@ function renderVideoCard(video) {
 // ===================================
 // USER ACTIONS
 // ===================================
-window.playVideo = function(src, title, source) {
-  if (source === 'youtube') {
-    // Already embedded, just scroll to it
-    alert(`Now playing: ${title}\n\nClick the video to play fullscreen`);
-  } else {
-    alert(`Playing: ${title}\nURL: ${src}`);
-  }
+window.playVideo = function(src, title) {
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `
+    <div class="modal-content" style="max-width: 800px; background: var(--card); border-radius: var(--radius-lg); padding: 1rem;">
+      <button class="close-modal" onclick="this.closest('.modal').remove()" style="position: absolute; top: 1rem; right: 1rem; background: var(--bg); border: none; color: var(--text); font-size: 2rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%;">×</button>
+      <video controls autoplay style="width: 100%; border-radius: var(--radius-md);">
+        <source src="${src}" type="video/mp4">
+      </video>
+      <div style="padding: 1rem 0 0;">
+        <h3 style="color: var(--text);">${title}</h3>
+      </div>
+    </div>
+  `;
+  modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(10px);';
+  document.body.appendChild(modal);
 }
 
 window.markComplete = function(id) {
@@ -289,7 +206,7 @@ window.toggleRevision = function(id, title) {
 // PROGRESS TRACKING
 // ===================================
 function updateProgress() {
-  const allVideos = Object.values(KSL_DATA).flat();
+  const allVideos = Object.values(KSL_DATA).flat().filter(v => v.source !== 'pdf');
   const beginnerVideos = allVideos.filter(v => v.level === 'Beginner');
   const beginnerCompleted = completedCards.filter(id => beginnerVideos.some(v => v.id === id)).length;
   
@@ -340,5 +257,19 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       switchPage(link.getAttribute('data-page'));
     });
+  });
+
+  // Auto-play on hover
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest('.video-thumb video')) {
+      e.target.play().catch(err => {});
+    }
+  });
+  
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest('.video-thumb video')) {
+      e.target.pause();
+      e.target.currentTime = 0;
+    }
   });
 });
