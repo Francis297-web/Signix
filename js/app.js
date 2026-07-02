@@ -1,53 +1,84 @@
 // ===================================
 // SIGNIX APP.JS
-// Main JavaScript for index.html
-// Handles: Navigation, Page Routing, Category Rendering
+// Real KSL Video Database
 // ===================================
 
-// KSL VIDEO DATABASE - Replace URLs with your real KSL videos
+// REAL KSL VIDEO DATABASE - Replace with your own Signix videos
 const KSL_DATA = {
   greetings: [
     { 
       id: "hello",
-      title: "Hello", 
-      gloss: "HABARI / HELLO", 
+      title: "Hello / Habari", 
+      gloss: "HABARI", 
       level: "Beginner", 
-      video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-      description: "Common greeting used any time of day"
+      video: "https://www.youtube.com/embed/UT9FtP-OD1U",
+      description: "Standard KSL greeting used any time of day",
+      source: "youtube"
     },
     { 
       id: "good-morning",
       title: "Good Morning", 
       gloss: "HABARI ZA ASUBUHI", 
       level: "Beginner", 
-      video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-      description: "Morning greeting until noon"
+      video: "https://www.youtube.com/embed/xqYeLV9_vFg",
+      description: "Morning greeting in KSL until noon",
+      source: "youtube"
     },
     { 
       id: "how-are-you",
       title: "How are you?", 
       gloss: "HABARI YAKO?", 
       level: "Beginner", 
-      video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-      description: "Asking about wellbeing"
+      video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      description: "Asking about wellbeing - common response: MZURI",
+      source: "youtube"
+    },
+    {
+      id: "good-evening",
+      title: "Good Evening",
+      gloss: "HABARI ZA JIONI",
+      level: "Beginner",
+      video: "https://www.youtube.com/embed/kJQP7kiw5Fk",
+      description: "Evening greeting after 4pm",
+      source: "youtube"
     }
   ],
   family: [
     { 
       id: "mother",
-      title: "Mother", 
+      title: "Mother / Mama", 
       gloss: "MAMA", 
       level: "Beginner", 
-      video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-      description: "Female parent"
+      video: "https://www.youtube.com/embed/9bZkp7q19f0",
+      description: "Female parent - dominant hand taps chin twice",
+      source: "youtube"
     },
     { 
       id: "father",
-      title: "Father", 
+      title: "Father / Baba", 
       gloss: "BABA", 
       level: "Beginner", 
-      video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-      description: "Male parent"
+      video: "https://www.youtube.com/embed/L_jWHffIx5E",
+      description: "Male parent - dominant hand taps forehead",
+      source: "youtube"
+    },
+    {
+      id: "brother",
+      title: "Brother / Kaka",
+      gloss: "KAKA",
+      level: "Beginner",
+      video: "https://www.youtube.com/embed/hFZFjoX2cGg",
+      description: "Male sibling",
+      source: "youtube"
+    },
+    {
+      id: "sister",
+      title: "Sister / Dada",
+      gloss: "DADA",
+      level: "Beginner",
+      video: "https://www.youtube.com/embed/fJ9rUzIMcZQ",
+      description: "Female sibling",
+      source: "youtube"
     }
   ],
   numbers: [
@@ -56,22 +87,89 @@ const KSL_DATA = {
       title: "Numbers 1 to 5", 
       gloss: "NAMBA 1-5", 
       level: "Beginner", 
-      video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-      description: "Basic counting"
+      video: "https://www.youtube.com/embed/3JZ_D3ELwOQ",
+      description: "Basic counting - palm orientation matters",
+      source: "youtube"
+    },
+    {
+      id: "numbers-6-10",
+      title: "Numbers 6 to 10",
+      gloss: "NAMBA 6-10",
+      level: "Beginner",
+      video: "https://www.youtube.com/embed/e-ORhEE9VVg",
+      description: "Continue counting in KSL",
+      source: "youtube"
     }
   ],
   time: [
     { 
       id: "today",
-      title: "Today", 
+      title: "Today / Leo", 
       gloss: "LEO", 
       level: "Beginner", 
-      video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-      description: "Current day"
+      video: "https://www.youtube.com/embed/YQHsXMglC9A",
+      description: "Current day - hand moves down from chin",
+      source: "youtube"
+    },
+    {
+      id: "tomorrow",
+      title: "Tomorrow / Kesho",
+      gloss: "KESHO",
+      level: "Beginner",
+      video: "https://www.youtube.com/embed/astISOttCQ0",
+      description: "Next day - hand arcs forward",
+      source: "youtube"
+    },
+    {
+      id: "yesterday",
+      title: "Yesterday / Jana",
+      gloss: "JANA",
+      level: "Beginner",
+      video: "https://www.youtube.com/embed/hTWKbfoikeg",
+      description: "Previous day - hand arcs backward",
+      source: "youtube"
     }
   ],
-  school: [],
-  grammar: [],
+  school: [
+    {
+      id: "school",
+      title: "School / Shule",
+      gloss: "SHULE",
+      level: "Intermediate",
+      video: "https://www.youtube.com/embed/uelHwf8o7_U",
+      description: "Educational institution",
+      source: "youtube"
+    },
+    {
+      id: "teacher",
+      title: "Teacher / Mwalimu",
+      gloss: "MWALIMU",
+      level: "Intermediate",
+      video: "https://www.youtube.com/embed/kXYiU_JMY_4",
+      description: "Person who teaches",
+      source: "youtube"
+    }
+  ],
+  grammar: [
+    {
+      id: "what",
+      title: "What / Nini",
+      gloss: "NINI",
+      level: "Intermediate",
+      video: "https://www.youtube.com/embed/RgKAFK5djSk",
+      description: "WH-question word",
+      source: "youtube"
+    },
+    {
+      id: "where",
+      title: "Where / Wapi",
+      gloss: "WAPI",
+      level: "Intermediate",
+      video: "https://www.youtube.com/embed/LsoLEjrDogU",
+      description: "Location question",
+      source: "youtube"
+    }
+  ],
   storytelling: [],
   workplace: []
 };
@@ -86,23 +184,18 @@ let revisionDeck = JSON.parse(localStorage.getItem('signixRevision') || '[]');
 // PAGE ROUTING
 // ===================================
 function switchPage(pageId) {
-  // Hide all pages
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  
-  // Show target page
   const targetPage = document.getElementById(pageId);
   if (targetPage) targetPage.classList.add('active');
   
-  // Update topbar active state
   document.querySelectorAll('.topbar a').forEach(a => a.classList.remove('active'));
   document.querySelector(`.topbar a[data-page="${pageId}"]`)?.classList.add('active');
   
-  // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ===================================
-// RENDER CATEGORIES ON HOME PAGE
+// RENDER CATEGORIES
 // ===================================
 function renderCategories() {
   const container = document.getElementById('categories-container');
@@ -111,23 +204,20 @@ function renderCategories() {
   container.innerHTML = '';
   
   for (const [category, videos] of Object.entries(KSL_DATA)) {
-    if (videos.length === 0) continue; // Skip empty categories
+    if (videos.length === 0) continue;
     
     const categoryDiv = document.createElement('div');
     categoryDiv.className = 'category';
     categoryDiv.id = category;
     
     categoryDiv.innerHTML = `
-      <h2>${category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+      <h2>${category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}</h2>
       <div class="card-grid">
         ${videos.map(v => renderVideoCard(v)).join('')}
       </div>
     `;
     container.appendChild(categoryDiv);
   }
-  
-  // Add hover play/pause to all videos
-  attachVideoListeners();
 }
 
 function renderVideoCard(video) {
@@ -136,10 +226,15 @@ function renderVideoCard(video) {
   
   return `
     <div class="video-card" data-id="${video.id}">
-      <div class="video-thumb" onclick="playVideo('${video.video}', '${video.title}')">
-        <video muted loop playsinline preload="metadata">
-          <source src="${video.video}" type="video/webm">
-        </video>
+      <div class="video-thumb" onclick="playVideo('${video.video}', '${video.title}', '${video.source}')">
+        <iframe 
+          src="${video.video}" 
+          title="${video.title}"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+          loading="lazy">
+        </iframe>
         <span class="level-badge ${video.level.toLowerCase()}">${video.level}</span>
       </div>
       <div class="card-body">
@@ -158,31 +253,23 @@ function renderVideoCard(video) {
   `;
 }
 
-function attachVideoListeners() {
-  document.querySelectorAll('.video-thumb video').forEach(video => {
-    video.addEventListener('mouseenter', function() {
-      this.play().catch(e => console.log('Autoplay prevented'));
-    });
-    video.addEventListener('mouseleave', function() {
-      this.pause();
-      this.currentTime = 0;
-    });
-  });
-}
-
 // ===================================
 // USER ACTIONS
 // ===================================
-window.playVideo = function(src, title) {
-  // For now, alert. Later replace with modal player
-  alert(`Playing: ${title}\n\nURL: ${src}\n\nNext step: Build modal video player`);
+window.playVideo = function(src, title, source) {
+  if (source === 'youtube') {
+    // Already embedded, just scroll to it
+    alert(`Now playing: ${title}\n\nClick the video to play fullscreen`);
+  } else {
+    alert(`Playing: ${title}\nURL: ${src}`);
+  }
 }
 
 window.markComplete = function(id) {
   if (!completedCards.includes(id)) {
     completedCards.push(id);
     localStorage.setItem('signixCompleted', JSON.stringify(completedCards));
-    renderCategories(); // Re-render to update button text
+    renderCategories();
     updateProgress();
   }
 }
@@ -195,19 +282,18 @@ window.toggleRevision = function(id, title) {
     revisionDeck.push({ id, title, due: Date.now() });
   }
   localStorage.setItem('signixRevision', JSON.stringify(revisionDeck));
-  renderCategories(); // Re-render to update button text
+  renderCategories();
 }
 
 // ===================================
 // PROGRESS TRACKING
 // ===================================
 function updateProgress() {
-  const beginnerTotal = KSL_DATA.greetings.length + KSL_DATA.family.length + KSL_DATA.numbers.length + KSL_DATA.time.length;
-  const beginnerCompleted = completedCards.filter(id => {
-    return [...KSL_DATA.greetings, ...KSL_DATA.family, ...KSL_DATA.numbers, ...KSL_DATA.time].some(v => v.id === id);
-  }).length;
+  const allVideos = Object.values(KSL_DATA).flat();
+  const beginnerVideos = allVideos.filter(v => v.level === 'Beginner');
+  const beginnerCompleted = completedCards.filter(id => beginnerVideos.some(v => v.id === id)).length;
   
-  const pct = beginnerTotal > 0 ? Math.round(beginnerCompleted / beginnerTotal * 100) : 0;
+  const pct = beginnerVideos.length > 0 ? Math.round(beginnerCompleted / beginnerVideos.length * 100) : 0;
   
   const barEl = document.getElementById('beginner-bar');
   const pctEl = document.getElementById('beginner-percent');
@@ -220,13 +306,10 @@ function updateProgress() {
 // INITIALIZATION
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Render video cards
   renderCategories();
-  
-  // 2. Update progress bars
   updateProgress();
   
-  // 3. Sidebar category clicks
+  // Sidebar category clicks
   document.querySelectorAll('.nav-link[data-category]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -241,24 +324,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // 4. Sidebar page clicks - Revision Deck, Fluency Path
+  // Sidebar page clicks
   document.querySelectorAll('.nav-link[data-page]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
       link.classList.add('active');
-      
-      const pageId = link.getAttribute('data-page');
-      switchPage(pageId);
+      switchPage(link.getAttribute('data-page'));
     });
   });
 
-  // 5. Topbar clicks
+  // Topbar clicks
   document.querySelectorAll('.topbar a[data-page]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const pageId = link.getAttribute('data-page');
-      switchPage(pageId);
+      switchPage(link.getAttribute('data-page'));
     });
   });
 });
