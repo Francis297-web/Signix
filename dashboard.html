@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard - Signix</title>
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Signix</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="app-layout">
@@ -15,15 +15,14 @@
         <div class="nav-title">Learning</div>
         <a class="nav-link" href="index.html">Library</a>
         <a class="nav-link active" href="dashboard.html">Dashboard</a>
-        <a class="nav-link" href="index.html?page=revision">Revision Deck</a>
-        <a class="nav-link" href="index.html?page=path">Fluency Path</a>
+        <a class="nav-link" href="index.html#revision">Revision Deck</a>
+        <a class="nav-link" href="index.html#path">Fluency Path</a>
       </div>
 
       <div class="nav-section">
-        <div class="nav-title">Community</div>
-        <a class="nav-link" href="gallery.html">KSL Dictionary</a>
-        <a class="nav-link" href="index.html?page=about">About</a>
-        <a class="nav-link" href="contact.html">Contact</a>
+        <div class="nav-title">Practice</div>
+        <a class="nav-link" href="videos.html">Practice Theater</a>
+        <a class="nav-link" href="library.html">KSL Dictionary</a>
       </div>
     </aside>
 
@@ -32,7 +31,7 @@
         <div class="topbar-links">
           <a href="index.html">Home</a>
           <a href="dashboard.html" class="active">Dashboard</a>
-          <a href="index.html">Library</a>
+          <a href="library.html">Library</a>
         </div>
         <div class="user-menu">
           <span id="userEmail" class="text-muted text-sm">Guest</span>
@@ -56,7 +55,7 @@
           <div class="stat-card">
             <div class="stat-value" id="statMastered">0</div>
             <div class="stat-label">Signs Mastered</div>
-            <div class="stat-trend" id="masteredTrend">0 this week</div>
+            <div class="stat-trend">Keep going</div>
           </div>
           <div class="stat-card">
             <div class="stat-value" id="statDue">0</div>
@@ -88,7 +87,7 @@
         <div class="section">
           <div class="section-header">
             <h2>Fluency Path</h2>
-            <a href="index.html?page=path" class="btn btn-secondary">View Full Path</a>
+            <a href="index.html#path" class="btn btn-secondary">View Full Path</a>
           </div>
           <div class="track">
             <div class="track-header">
@@ -117,7 +116,7 @@
         <div class="section">
           <div class="section-header">
             <h2>Revision Due Today</h2>
-            <a href="index.html?page=revision" class="btn btn-primary">Review All</a>
+            <a href="index.html#revision" class="btn btn-primary">Review All</a>
           </div>
           <div id="revisionList">
             <div class="empty-state">
@@ -127,7 +126,6 @@
         </div>
       </div>
 
-      <!-- FOOTER - ADDED -->
       <footer class="footer">
         <p class="text-muted text-center">
           Made by <strong>NEXORA TECHNOLOGIES</strong> - 0790357975
@@ -136,117 +134,6 @@
     </main>
   </div>
 
-<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-  import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-  import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-
-  // Your Firebase config - paste from js/firebase.js
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  let completedCards = JSON.parse(localStorage.getItem('signixCompleted') || '[]');
-  let revisionDeck = JSON.parse(localStorage.getItem('signixRevision') || '[]');
-  let lastLogin = localStorage.getItem('signixLastLogin');
-  let streak = parseInt(localStorage.getItem('signixStreak') || '0');
-
-  // Update streak
-  const today = new Date().toDateString();
-  if (lastLogin!== today) {
-    const yesterday = new Date(Date.now() - 86400000).toDateString();
-    if (lastLogin === yesterday) {
-      streak++;
-    } else if (lastLogin) {
-      streak = 1;
-    }
-    localStorage.setItem('signixStreak', streak);
-    localStorage.setItem('signixLastLogin', today);
-  }
-
-  function updateDashboard() {
-    document.getElementById('statStreak').textContent = streak;
-    document.getElementById('statMastered').textContent = completedCards.length;
-    document.getElementById('statDue').textContent = revisionDeck.length;
-
-    const beginnerTotal = 7;
-    const beginnerPct = Math.round(completedCards.length / beginnerTotal * 100);
-    document.getElementById('statProgress').textContent = beginnerPct + '%';
-    document.getElementById('beginnerPct').textContent = beginnerPct + '%';
-    document.getElementById('beginnerBar').style.width = beginnerPct + '%';
-
-    const continueList = document.getElementById('continueList');
-    if (completedCards.length > 0) {
-      continueList.innerHTML = completedCards.slice(-3).reverse().map(id => `
-        <div class="continue-card">
-          <div class="continue-thumb"></div>
-          <div class="continue-info">
-            <h4>${id.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</h4>
-            <p class="text-muted text-sm">Mastered • Practice again</p>
-          </div>
-          <a href="index.html" class="btn btn-secondary">Review</a>
-        </div>
-      `).join('');
-    }
-
-    const revisionList = document.getElementById('revisionList');
-    if (revisionDeck.length > 0) {
-      revisionList.innerHTML = revisionDeck.slice(0, 5).map(card => `
-        <div class="revision-item">
-          <div>
-            <strong>${card.title}</strong>
-            <div class="text-muted text-sm">Due now</div>
-          </div>
-          <span class="badge-warning">DUE</span>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('streakTrend').textContent = streak > 0? `${streak} day${streak > 1? 's' : ''} in a row!` : 'Start today!';
-  }
-
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      document.getElementById('userEmail').textContent = user.email;
-      document.getElementById('userAvatar').textContent = user.email[0].toUpperCase();
-      document.getElementById('welcomeText').textContent = `Welcome back, ${user.displayName || user.email.split('@')[0]}!`;
-
-      try {
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        if (userDoc.exists()) {
-          const data = userDoc.data();
-          completedCards = data.completedCards || [];
-          revisionDeck = data.revisionDeck || [];
-          streak = data.streak || 0;
-        }
-      } catch (e) {
-        console.log('Using localStorage fallback');
-      }
-    } else {
-      document.getElementById('userEmail').textContent = 'Guest';
-      document.getElementById('welcomeText').textContent = 'Welcome to Signix!';
-    }
-    updateDashboard();
-  });
-
-  document.getElementById('userAvatar').addEventListener('click', () => {
-    if (confirm('Log out?')) {
-      signOut(auth).then(() => {
-        window.location.href = 'login.html';
-      });
-    }
-  });
-
-  updateDashboard();
-</script>
+  <script type="module" src="js/dashboard.js"></script>
 </body>
 </html>
