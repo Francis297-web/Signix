@@ -1,96 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practice Theater - Signix Videos</title>
-   <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Theater - Signix</title>
+  <link rel="stylesheet" href="css/styles.css?v=3">
 </head>
 <body>
-  <aside class="sidebar">
-    <a href="index.html" class="logo">Sign<span>ix</span></a>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="logo">
+        <img src="Signix-logo.png" alt="Signix" style="height: 40px;">
+      </a>
+      <div class="nav-section">
+        <div class="nav-title">Filter by Level</div>
+        <button class="nav-link active" data-level="all">All Videos</button>
+        <button class="nav-link" data-level="Beginner">Beginner</button>
+        <button class="nav-link" data-level="Intermediate">Intermediate</button>
+        <button class="nav-link" data-level="Advanced">Advanced</button>
+      </div>
+    </aside>
 
-    <div class="nav-section">
-      <div class="nav-title">Practice by Level</div>
-      <a class="nav-link active" data-level="all">All Videos</a>
-      <a class="nav-link" data-level="Beginner">Beginner</a>
-      <a class="nav-link" data-level="Intermediate">Intermediate</a>
-      <a class="nav-link" data-level="Advanced">Advanced</a>
-    </div>
+    <main class="main">
+      <nav class="topbar">
+        <div class="topbar-links">
+          <a href="index.html">Home</a>
+          <a href="library.html">Library</a>
+          <a href="videos.html" class="active">Practice Theater</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+      </nav>
 
-    <div class="nav-section">
-      <div class="nav-title">Categories</div>
-      <a class="nav-link" data-category="greetings">Greetings</a>
-      <a class="nav-link" data-category="family">Family</a>
-      <a class="nav-link" data-category="numbers">Numbers</a>
-      <a class="nav-link" data-category="time">Time</a>
-      <a class="nav-link" data-category="school">School</a>
-      <a class="nav-link" data-category="grammar">Grammar</a>
-      <a class="nav-link" data-category="storytelling">Storytelling</a>
-      <a class="nav-link" data-category="workplace">Workplace</a>
-    </div>
+      <div class="content">
+        <div class="page-header">
+          <h1>Practice Theater</h1>
+          <p class="subtext">All KSL videos in one place. Practice without distractions.</p>
+        </div>
 
-    <div class="nav-section">
-      <div class="nav-title">Tools</div>
-      <a class="nav-link" href="dashboard.html">Dashboard</a>
-      <a class="nav-link" href="library.html">Library</a>
-      <a class="nav-link" href="index.html#revision">Revision Deck</a>
-    </div>
-  </aside>
+        <div class="controls-bar">
+          <div class="view-toggle">
+            <button class="view-btn active" data-view="grid">Grid View</button>
+            <button class="view-btn" data-view="list">List View</button>
+          </div>
+          <button class="btn btn-primary" onclick="startTheaterMode()">🎭 Theater Mode</button>
+        </div>
 
-  <main class="main">
-    <nav class="topbar">
-      <a href="index.html">Home</a>
-      <a href="library.html">Library</a>
-      <a href="videos.html" class="active">Practice Theater</a>
-      <a href="dashboard.html">Dashboard</a>
-    </nav>
-
-    <div class="controls-bar">
-      <div class="view-toggle">
-        <button class="view-btn active" data-view="grid">Grid View</button>
-        <button class="view-btn" data-view="list">List View</button>
+        <div id="videosContainer" class="video-grid"></div>
       </div>
 
-      <select class="filter-select" id="sortSelect">
-        <option value="newest">Newest First</option>
-        <option value="alphabetical">A-Z</option>
-        <option value="level">By Level</option>
-      </select>
+      <footer class="footer">
+        <p class="text-muted text-center">
+          Made by <strong>NEXORA TECHNOLOGIES</strong> - 0790357975
+        </p>
+      </footer>
+    </main>
+  </div>
 
-      <select class="filter-select" id="categoryFilter">
-        <option value="all">All Categories</option>
-        <option value="greetings">Greetings</option>
-        <option value="family">Family</option>
-        <option value="numbers">Numbers</option>
-        <option value="time">Time</option>
-        <option value="school">School</option>
-        <option value="grammar">Grammar</option>
-        <option value="storytelling">Storytelling</option>
-        <option value="workplace">Workplace</option>
-      </select>
-
-      <button class="theater-btn" onclick="startTheaterMode()">🎭 Theater Mode</button>
-    </div>
-
-    <div class="content">
-      <div class="page-header">
-        <h1 id="pageTitle">Practice Theater</h1>
-        <p id="pageSubtitle">All KSL videos in one place. Practice without distractions.</p>
-      </div>
-
-      <div id="videosContainer" class="video-grid"></div>
-    </div>
-  </main>
-
-  <!-- Theater Mode -->
   <div class="theater-mode" id="theaterMode">
     <div class="theater-header">
       <div class="theater-title" id="theaterTitle">KSL Practice</div>
       <div class="close-theater" onclick="closeTheater()">×</div>
     </div>
     <div class="theater-video">
-      <video id="theaterVideo" controls autoplay></video>
+      <iframe id="theaterVideo" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="theater-controls">
       <button class="btn btn-secondary" onclick="prevVideo()">⏮ Previous</button>
@@ -99,247 +71,6 @@
     </div>
   </div>
 
-<script>
-  // ALL KSL VIDEOS - Replace with your real video files
-  const ALL_VIDEOS = [
-    { id: "hello", title: "Hello", gloss: "HABARI / HELLO", category: "greetings", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:05" },
-    { id: "good-morning", title: "Good Morning", gloss: "HABARI ZA ASUBUHI", category: "greetings", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:06" },
-    { id: "how-are-you", title: "How are you?", gloss: "HABARI YAKO?", category: "greetings", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:07" },
-    { id: "fine", title: "I'm Fine", gloss: "NIKO SALAMA", category: "greetings", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:05" },
-    { id: "thank-you", title: "Thank You", gloss: "ASANTE", category: "greetings", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:04" },
-    { id: "goodbye", title: "Goodbye", gloss: "KWAHERI", category: "greetings", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:05" },
-    { id: "mother", title: "Mother", gloss: "MAMA", category: "family", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:04" },
-    { id: "father", title: "Father", gloss: "BABA", category: "family", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:04" },
-    { id: "sister", title: "Sister", gloss: "DADA", category: "family", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:05" },
-    { id: "brother", title: "Brother", gloss: "KAKA", category: "family", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:05" },
-    { id: "numbers-1-5", title: "Numbers 1 to 5", gloss: "NAMBA 1-5", category: "numbers", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:15" },
-    { id: "numbers-6-10", title: "Numbers 6 to 10", gloss: "NAMBA 6-10", category: "numbers", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:15" },
-    { id: "today", title: "Today", gloss: "LEO", category: "time", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:04" },
-    { id: "tomorrow", title: "Tomorrow", gloss: "KESHO", category: "time", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:05" },
-    { id: "teacher", title: "Teacher", gloss: "MWALIMU", category: "school", level: "Intermediate", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:06" },
-    { id: "student", title: "Student", gloss: "MWANAFUNZI", category: "school", level: "Intermediate", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:07" },
-    { id: "question-marker", title: "Question Marker", gloss: "SWALI", category: "grammar", level: "Intermediate", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:08" },
-    { id: "work", title: "Work", gloss: "KAZI", category: "workplace", level: "Intermediate", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", duration: "0:05" },
-  ];
-
-  let currentView = 'grid';
-  let currentLevel = 'all';
-  let currentCategory = 'all';
-  let currentSort = 'newest';
-  let theaterIndex = 0;
-  let theaterPlaylist = [];
-
-  let completedCards = JSON.parse(localStorage.getItem('signixCompleted') || '[]');
-  let revisionDeck = JSON.parse(localStorage.getItem('signixRevision') || '[]');
-
-  function getFilteredVideos() {
-    let videos = [...ALL_VIDEOS];
-
-    if (currentLevel!== 'all') {
-      videos = videos.filter(v => v.level === currentLevel);
-    }
-
-    if (currentCategory!== 'all') {
-      videos = videos.filter(v => v.category === currentCategory);
-    }
-
-    if (currentSort === 'alphabetical') {
-      videos.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (currentSort === 'level') {
-      const order = { 'Beginner': 1, 'Intermediate': 2, 'Advanced': 3 };
-      videos.sort((a, b) => order[a.level] - order[b.level]);
-    }
-
-    return videos;
-  }
-
-  function renderVideos() {
-    const container = document.getElementById('videosContainer');
-    const videos = getFilteredVideos();
-
-    document.getElementById('pageTitle').textContent =
-      currentCategory === 'all'? 'All KSL Videos' : currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
-    document.getElementById('pageSubtitle').textContent =
-      `${videos.length} video${videos.length!== 1? 's' : ''} • Practice without distractions`;
-
-    if (currentView === 'grid') {
-      container.className = 'video-grid';
-      container.innerHTML = videos.map(video => `
-        <div class="video-card">
-          <div class="video-thumb" onclick="openVideo('${video.id}')">
-            <video poster="https://via.placeholder.com/640x360/1e293b/94a3b8?text=${encodeURIComponent(video.title)}" muted>
-              <source src="${video.video}" type="video/webm">
-            </video>
-            <span class="level-badge ${video.level.toLowerCase()}">${video.level}</span>
-            <span class="video-duration">${video.duration}</span>
-          </div>
-          <div class="card-body">
-            <div class="card-title">${video.title}</div>
-            <div class="card-gloss">${video.gloss}</div>
-            <div class="card-actions">
-              <button class="btn btn-primary" onclick="addToRevision('${video.id}', '${video.title}')">
-                ${completedCards.includes(video.id)? '✓ Practice' : 'Practice'}
-              </button>
-              <button class="btn btn-secondary" onclick="openVideo('${video.id}')">Watch</button>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    } else {
-      container.className = 'video-list';
-      container.innerHTML = videos.map(video => `
-        <div class="list-item">
-          <div class="list-thumb" onclick="openVideo('${video.id}')">
-            <video muted>
-              <source src="${video.video}" type="video/webm">
-            </video>
-          </div>
-          <div class="list-info">
-            <div class="list-title">${video.title}</div>
-            <div class="list-gloss">${video.gloss}</div>
-            <div class="list-meta">
-              <span class="badge">${video.level}</span>
-              <span class="badge">${video.category}</span>
-              <span class="badge">${video.duration}</span>
-            </div>
-          </div>
-          <div style="display:flex;gap:0.5rem;align-items:center;">
-            <button class="btn btn-primary" onclick="addToRevision('${video.id}', '${video.title}')">Practice</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    attachVideoListeners();
-  }
-
-  function attachVideoListeners() {
-    document.querySelectorAll('.video-thumb video').forEach(video => {
-      video.addEventListener('mouseenter', function() { this.play(); });
-      video.addEventListener('mouseleave', function() { this.pause(); this.currentTime = 0; });
-    });
-  }
-
-  window.openVideo = function(id) {
-    const video = ALL_VIDEOS.find(v => v.id === id);
-    if (video) {
-      theaterPlaylist = [video];
-      theaterIndex = 0;
-      openTheater();
-    }
-  }
-
-  window.addToRevision = function(id, title) {
-    if (!revisionDeck.find(c => c.id === id)) {
-      revisionDeck.push({ id, title, due: Date.now() });
-      localStorage.setItem('signixRevision', JSON.stringify(revisionDeck));
-    }
-    if (!completedCards.includes(id)) {
-      completedCards.push(id);
-      localStorage.setItem('signixCompleted', JSON.stringify(completedCards));
-    }
-    alert(`Added "${title}" to your practice list`);
-    renderVideos();
-  }
-
-  // Theater Mode
-  window.startTheaterMode = function() {
-    theaterPlaylist = getFilteredVideos();
-    if (theaterPlaylist.length === 0) {
-      alert('No videos to play. Adjust your filters.');
-      return;
-    }
-    theaterIndex = 0;
-    openTheater();
-  }
-
-  function openTheater() {
-    const video = theaterPlaylist[theaterIndex];
-    document.getElementById('theaterTitle').textContent = video.title + ' - ' + video.gloss;
-    document.getElementById('theaterVideo').src = video.video;
-    document.getElementById('theaterMode').classList.add('active');
-    document.getElementById('theaterVideo').play();
-  }
-
-  window.closeTheater = function() {
-    document.getElementById('theaterMode').classList.remove('active');
-    document.getElementById('theaterVideo').pause();
-  }
-
-  window.nextVideo = function() {
-    if (theaterIndex < theaterPlaylist.length - 1) {
-      theaterIndex++;
-      openTheater();
-    }
-  }
-
-  window.prevVideo = function() {
-    if (theaterIndex > 0) {
-      theaterIndex--;
-      openTheater();
-    }
-  }
-
-  window.togglePlayPause = function() {
-    const vid = document.getElementById('theaterVideo');
-    if (vid.paused) vid.play();
-    else vid.pause();
-  }
-
-  // Event Listeners
-  document.querySelectorAll('[data-view]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-view]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentView = btn.dataset.view;
-      renderVideos();
-    });
-  });
-
-  document.querySelectorAll('[data-level]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      document.querySelectorAll('[data-level]').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      currentLevel = link.dataset.level;
-      renderVideos();
-    });
-  });
-
-  document.querySelectorAll('[data-category]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      document.querySelectorAll('[data-category]').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      currentCategory = link.dataset.category;
-      renderVideos();
-    });
-  });
-
-  document.getElementById('sortSelect').addEventListener('change', e => {
-    currentSort = e.target.value;
-    renderVideos();
-  });
-
-  document.getElementById('categoryFilter').addEventListener('change', e => {
-    currentCategory = e.target.value;
-    renderVideos();
-  });
-
-  // Keyboard shortcuts in theater
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('theaterMode').classList.contains('active')) return;
-    if (e.key === 'Escape') closeTheater();
-    if (e.key === 'ArrowRight') nextVideo();
-    if (e.key === 'ArrowLeft') prevVideo();
-    if (e.key === ' ') {
-      e.preventDefault();
-      togglePlayPause();
-    }
-  });
-
-  // Init
-  renderVideos();
-</script>
+  <script type="module" src="js/videos.js"></script>
 </body>
 </html>
