@@ -4,301 +4,266 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Signix - Learn KSL Fluency</title>
-<style>
-  :root {
-    --bg: #0f172a;
-    --card: #1e293b;
-    --accent: #22c55e;
-    --accent2: #3b82f6;
-    --text: #f1f5f9;
-    --muted: #94a3b8;
-    --border: #334155;
-  }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    display: flex;
-    min-height: 100vh;
-  }
-  
-  /* Sidebar - w3schools style */
-  .sidebar {
-    width: 260px;
-    background: #0b1220;
-    border-right: 1px solid var(--border);
-    padding: 1.5rem 0;
-    overflow-y: auto;
-    flex-shrink: 0;
-  }
-  .logo {
-    padding: 0 1.5rem 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
-  .logo span { color: var(--accent2); }
-  .nav-section { margin-bottom: 1.5rem; }
-  .nav-title {
-    padding: 0.5rem 1.5rem;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-  .nav-link {
-    display: block;
-    padding: 0.6rem 1.5rem;
-    color: var(--text);
-    text-decoration: none;
-    cursor: pointer;
-    border-left: 3px solid transparent;
-  }
-  .nav-link:hover, .nav-link.active {
-    background: var(--card);
-    border-left-color: var(--accent);
-  }
-
-  /* Main content */
-  .main {
-    flex: 1;
-    overflow-y: auto;
-  }
-  .topbar {
-    background: #0b1220;
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 2rem;
-    display: flex;
-    gap: 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  .topbar a {
-    color: var(--muted);
-    text-decoration: none;
-    font-weight: 600;
-  }
-  .topbar a.active, .topbar a:hover { color: var(--accent); }
-  
-  .content {
-    padding: 2rem;
-    max-width: 1200px;
-  }
-  .page { display: none; }
-  .page.active { display: block; }
-  
-  h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-  .subtext { color: var(--muted); margin-bottom: 2rem; }
-  
-  /* Category sections */
-  .category {
-    margin-bottom: 3rem;
-  }
-  .category h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  /* Video cards */
-  .video-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s;
-  }
-  .video-card:hover { transform: translateY(-4px); }
-  .video-thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: #000;
-    position: relative;
-  }
-  .video-thumb video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .level-badge {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: var(--accent2);
-    color: white;
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-  }
-  .card-body { padding: 1rem; }
-  .card-title { font-weight: 700; margin-bottom: 0.25rem; }
-  .card-gloss { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
-  .card-actions { display: flex; gap: 0.5rem; }
-  .btn {
-    flex: 1;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 0.875rem;
-  }
-  .btn-primary { background: var(--accent); color: #052e16; }
-  .btn-secondary { background: var(--border); color: var(--text); }
-  
-  /* Fluency Path */
-  .track {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .track-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  .progress-bar {
-    height: 8px;
-    background: var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--accent);
-    width: 0%;
-    transition: width 0.3s;
-  }
-  
-  /* Revision Deck */
-  .revision-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Accessibility */
-  .high-contrast { filter: contrast(1.2); }
-  .large-text { font-size: 1.125rem; }
-  
-  @media (max-width: 768px) {
-    body { flex-direction: column; }
-    .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
-    .card-grid { grid-template-columns: 1fr; }
-  }
-</style>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="logo">Sign<span>ix</span></div>
-    
-    <div class="nav-section">
-      <div class="nav-title">Categories</div>
-      <a class="nav-link active" data-category="greetings">Greetings</a>
-      <a class="nav-link" data-category="family">Family</a>
-      <a class="nav-link" data-category="numbers">Numbers</a>
-      <a class="nav-link" data-category="time">Time</a>
-      <a class="nav-link" data-category="school">School</a>
-      <a class="nav-link" data-category="grammar">Grammar</a>
-      <a class="nav-link" data-category="storytelling">Storytelling</a>
-      <a class="nav-link" data-category="workplace">Workplace KSL</a>
-    </div>
-    
-    <div class="nav-section">
-      <div class="nav-title">Tools</div>
-      <a class="nav-link" data-page="revision">Revision Deck</a>
-      <a class="nav-link" data-page="path">Fluency Path</a>
-    </div>
-  </aside>
-
-  <main class="main">
-    <nav class="topbar">
-      <a href="#" class="active" data-page="home">Home</a>
-      <a href="#" data-page="path">Fluency Path</a>
-      <a href="#" data-page="revision">Revision Deck</a>
-      <a href="#" data-page="about">About</a>
-    </nav>
-
-    <div class="content">
-      <!-- HOME PAGE WITH CATEGORIES -->
-      <div id="home" class="page active">
-        <h1>Learn KSL with Signix</h1>
-        <p class="subtext">Deaf-first learning. Click any video card to start. Add cards to your revision deck for spaced practice.</p>
-        
-        <div id="categories-container"></div>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="logo">Sign<span>ix</span></div>
+      
+      <div class="nav-section">
+        <div class="nav-title">Categories</div>
+        <button class="nav-link active" data-category="greetings">Greetings</button>
+        <button class="nav-link" data-category="family">Family</button>
+        <button class="nav-link" data-category="numbers">Numbers</button>
+        <button class="nav-link" data-category="time">Time</button>
+        <button class="nav-link" data-category="school">School</button>
+        <button class="nav-link" data-category="grammar">Grammar</button>
+        <button class="nav-link" data-category="storytelling">Storytelling</button>
+        <button class="nav-link" data-category="workplace">Workplace KSL</button>
       </div>
+      
+      <div class="nav-section">
+        <div class="nav-title">Tools</div>
+        <button class="nav-link" data-page="revision">Revision Deck</button>
+        <button class="nav-link" data-page="path">Fluency Path</button>
+        <button class="nav-link" data-page="downloads">Downloads</button>
+      </div>
+    </aside>
 
-      <!-- FLUENCY PATH -->
-      <div id="path" class="page">
-        <h1>Fluency Path</h1>
-        <p class="subtext">Master KSL step by step. Complete categories to unlock the next level.</p>
-        
-        <div class="track">
-          <div class="track-header">
-            <h3>Beginner - KSL Foundations</h3>
-            <span id="beginner-percent">0%</span>
+    <main class="main">
+      <nav class="topbar">
+        <div class="topbar-links">
+          <a href="#" class="active" data-page="home">Home</a>
+          <a href="#" data-page="path">Fluency Path</a>
+          <a href="#" data-page="revision">Revision Deck</a>
+          <a href="#" data-page="about">About</a>
+        </div>
+      </nav>
+
+      <div class="content">
+        <!-- HOME PAGE WITH CATEGORIES -->
+        <div id="home" class="page active">
+          <div class="page-header">
+            <h1>Learn KSL with Signix</h1>
+            <p class="subtext">Deaf-first learning. Click any video card to start. Add cards to your revision deck for spaced practice.</p>
           </div>
-          <div class="progress-bar"><div class="progress-fill" id="beginner-bar"></div></div>
-          <p style="margin-top:0.75rem;color:var(--muted);">Greetings, Family, Numbers, Time</p>
-        </div>
-        
-        <div class="track">
-          <div class="track-header">
-            <h3>Intermediate - Conversation</h3>
-            <span id="intermediate-percent">Locked</span>
+          
+          <div id="categories-container"></div>
+
+          <!-- STORYTIME SECTION - NEW -->
+          <div class="section" id="storytelling">
+            <div class="section-header">
+              <h2>📚 StoryTime in KSL</h2>
+            </div>
+            <div class="video-card">
+              <div class="video-thumb">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/UT9FtP-OD1U" 
+                  title="KSL StoryTime" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div class="card-body">
+                <div class="card-title">Digital StoryTime - KSL</div>
+                <div class="card-gloss">Watch fluent KSL storytelling. Practice comprehension.</div>
+                <div class="card-actions">
+                  <a href="https://youtu.be/UT9FtP-OD1U?si=tNaEbyqLQwOrqdyQ" target="_blank" class="btn btn-primary">Watch on YouTube</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="progress-bar"><div class="progress-fill"></div></div>
-          <p style="margin-top:0.75rem;color:var(--muted);">School, Grammar, Storytelling</p>
         </div>
-        
-        <div class="track">
-          <div class="track-header">
-            <h3>Advanced - Fluency</h3>
-            <span id="advanced-percent">Locked</span>
+
+        <!-- FLUENCY PATH -->
+        <div id="path" class="page">
+          <div class="page-header">
+            <h1>Fluency Path</h1>
+            <p class="subtext">Master KSL step by step. Complete categories to unlock the next level.</p>
           </div>
-          <div class="progress-bar"><div class="progress-fill"></div></div>
-          <p style="margin-top:0.75rem;color:var(--muted);">Workplace KSL, Complex Grammar, Interpreting</p>
+          
+          <div class="track">
+            <div class="track-header">
+              <h3>Beginner - KSL Foundations</h3>
+              <span id="beginner-percent">0%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="beginner-bar"></div></div>
+            <p class="text-muted mt-sm">Greetings, Family, Numbers, Time</p>
+          </div>
+          
+          <div class="track">
+            <div class="track-header">
+              <h3>Intermediate - Conversation</h3>
+              <span id="intermediate-percent">Locked</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <p class="text-muted mt-sm">School, Grammar, Storytelling</p>
+          </div>
+          
+          <div class="track">
+            <div class="track-header">
+              <h3>Advanced - Fluency</h3>
+              <span id="advanced-percent">Locked</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <p class="text-muted mt-sm">Workplace KSL, Complex Grammar, Interpreting</p>
+          </div>
+        </div>
+
+        <!-- REVISION DECK -->
+        <div id="revision" class="page">
+          <div class="page-header">
+            <h1>Revision Deck</h1>
+            <p class="subtext">Spaced repetition. Review these cards today to keep them fresh.</p>
+          </div>
+          <div id="revision-list">
+            <div class="empty-state">
+              <h3>No cards due yet</h3>
+              <p>Click "Add to Revision" on any video card.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOWNLOADS - NEW -->
+        <div id="downloads" class="page">
+          <div class="page-header">
+            <h1>Downloads</h1>
+            <p class="subtext">Offline KSL resources for learners and teachers.</p>
+          </div>
+          
+          <div class="section">
+            <div class="video-card">
+              <div class="card-body">
+                <div class="card-title">📄 KSL Alphabet & Numbers PDF</div>
+                <div class="card-gloss">Fingerspelling A-Z and numbers 1-100. Print for classroom use.</div>
+                <div class="card-actions">
+                  <a href="downloads/ksl_alphabet_numbers_web_v0.2.pdf" target="_blank" class="btn btn-primary">Download PDF</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABOUT -->
+        <div id="about" class="page">
+          <div class="page-header">
+            <h1>About Signix</h1>
+            <p class="subtext">Signix is a deaf-first platform to achieve Kenyan Sign Language fluency. Built like w3schools for structure, like Khan Academy for progression.</p>
+          </div>
+          <div class="section">
+            <p>All content should be created with native KSL signers. No audio required. Visual learning first.</p>
+            <p class="mt-md"><strong>Founder:</strong> Patience Wambui</p>
+          </div>
         </div>
       </div>
 
-      <!-- REVISION DECK -->
-      <div id="revision" class="page">
-        <h1>Revision Deck</h1>
-        <p class="subtext">Spaced repetition. Review these cards today to keep them fresh.</p>
-        <div id="revision-list">
-          <p style="color:var(--muted)">No cards due yet. Click "Add to Revision" on any video card.</p>
-        </div>
-      </div>
-
-      <!-- ABOUT -->
-      <div id="about" class="page">
-        <h1>About Signix</h1>
-        <p class="subtext">Signix is a deaf-first platform to achieve Kenyan Sign Language fluency. Built like w3schools for structure, like Khan Academy for progression.</p>
-        <p>All content should be created with native KSL signers. No audio required. Visual learning first.</p>
-      </div>
-    </div>
-  </main>
+      <!-- FOOTER - NEW -->
+      <footer class="footer">
+        <p class="text-muted text-center">
+          Made by <strong>NEXORA TECHNOLOGIES</strong> - 0790357975
+        </p>
+      </footer>
+    </main>
+  </div>
 
 <script>
   // DATA: Replace video src with your real KSL videos
   const KSL_DATA = {
     greetings: [
       { title: "Hello", gloss: "HABARI / HELLO", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" },
-      { title: "Good Morning", gloss: "HABARI ZA ASUBUHI"
+      { title: "Good Morning", gloss: "HABARI ZA ASUBUHI", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" }
+    ],
+    family: [
+      { title: "Mother", gloss: "MAMA", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" }
+    ],
+    numbers: [
+      { title: "One", gloss: "MOJA", level: "Beginner", video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" }
+    ]
+  };
+
+  // RENDER CATEGORIES
+  function renderCategories() {
+    const container = document.getElementById('categories-container');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    for (const [category, videos] of Object.entries(KSL_DATA)) {
+      const categoryDiv = document.createElement('div');
+      categoryDiv.className = 'category';
+      categoryDiv.innerHTML = `
+        <h2>${category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+        <div class="card-grid">
+          ${videos.map(v => `
+            <div class="video-card">
+              <div class="video-thumb">
+                <video src="${v.video}" muted loop playsinline></video>
+                <span class="level-badge ${v.level.toLowerCase()}">${v.level}</span>
+              </div>
+              <div class="card-body">
+                <div class="card-title">${v.title}</div>
+                <div class="card-gloss">${v.gloss}</div>
+                <div class="card-actions">
+                  <button class="btn btn-primary" onclick="playVideo('${v.video}')">Play</button>
+                  <button class="btn btn-secondary" onclick="addToRevision('${v.title}')">Add to Revision</button>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      container.appendChild(categoryDiv);
+    }
+  }
+
+  // PAGE SWITCHING - FIXES BUTTONS
+  function switchPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) targetPage.classList.add('active');
+    
+    document.querySelectorAll('.topbar a').forEach(a => a.classList.remove('active'));
+    document.querySelector(`.topbar a[data-page="${pageId}"]`)?.classList.add('active');
+  }
+
+  // CLICK HANDLERS
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sidebar clicks
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        
+        const category = link.getAttribute('data-category');
+        const page = link.getAttribute('data-page');
+        
+        if (page) {
+          switchPage(page);
+        } else if (category) {
+          switchPage('home');
+          setTimeout(() => {
+            document.getElementById(category)?.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
+      });
+    });
+
+    // Topbar clicks
+    document.querySelectorAll('.topbar a[data-page]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageId = link.getAttribute('data-page');
+        switchPage(pageId);
+      });
+    });
+
+    renderCategories();
+  });
+
+  function playVideo(src) {
+    alert('Playing KSL video: ' + src + '\n\nReplace with modal player later');
+  }
+
+  function addToRevision(title) {
+    alert('Added "' + title + '" to Revision Deck!');
+  }
+</script>
+</body>
+</html>
