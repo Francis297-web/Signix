@@ -1,1 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KSL Library - Signix</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #22c55e;
+    --accent2: #3b82f6;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+  }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+  }
 
+  /* Sidebar - w3schools style */
+.sidebar {
+    width: 280px;
+    background: #0b1220;
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 0;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+.logo {
+    padding: 0 1.5rem 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-decoration: none;
+    display: block;
+  }
+.logo span { color: var(--accent2); }
+.nav-section { margin-bottom: 1.5rem; }
+.nav-title {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+.nav-link {
+    display: block;
+    padding: 0.6rem 1.5rem;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    font-size: 0.95rem;
+  }
+.nav-link:hover,.nav-link.active {
+    background: var(--card);
+    border-left-color: var(--accent);
+  }
+.nav-link .count {
+    float: right;
+    background: var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 10px;
+  }
+
+  /* Main content */
+.main {
+    flex: 1;
+    overflow-y: auto;
+  }
+.topbar {
+    background: #0b1220;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
+  }
+.topbar a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+  }
+.topbar a.active,.topbar a:hover { color: var(--accent); }
+
+  /* Search & Filters */
+.search-container {
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+    position: relative;
+  }
+.search-input {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+  }
+.filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+.filter-btn.active {
+    background: var(--accent);
+    color: #052e16;
+    border-color: var(--accent);
+  }
+
+.content {
+    padding: 2rem;
+  }
+
+.page-header {
+    margin-bottom: 2rem;
+  }
+.page-header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+.page-header p { color: var(--muted); }
+
+  /* Category sections */
+.category {
+    margin-bottom: 3rem;
+    scroll-margin-top: 80px;
+  }
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+.category h2 {
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+.category-count {
+    background: var(--border);
+    color: var(--muted);
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+  }
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Video cards */
+.video-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+.video-card:hover { 
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+.video-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    position: relative;
+    cursor: pointer;
+  }
+.video-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+.video-thumb:hover video { opacity: 0.9; }
+.level-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: var(--accent2);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+.level-badge.beginner { background: var(--accent); }
+.level-badge.intermediate { background: var(--accent2); }
+.level-badge.advanced { background: #a855f7; }
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(34, 197, 94, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+.video-thumb:hover .play-overlay { opacity: 1; }
+.card-body { padding: 1.25rem; }
+.card-title { 
+    font-weight: 700; 
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem; 
+  }
+.card-gloss { 
+    color: var(--muted); 
+    font-size: 0.9rem; 
+    margin-bottom: 1rem;
+    min-height: 2.5rem;
+  }
+.card-actions { 
+    display: flex; 
+    gap: 0.5rem; 
+  }
+.btn {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: opacity 0.2s;
+  }
+.btn:hover { opacity: 0.9; }
+.btn-primary { background: var(--accent); color: #052e16; }
+.btn-secondary { background: var(--border); color: var(--text); }
+.btn-saved { background: var(--accent2); color: white; }
+
+  /* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--muted);
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  }
+  @media (max-width: 768px) {
+    body { flex-direction: column; }
+  .sidebar { 
+      width: 100%; 
+      border-right: none; 
+      border-bottom: 1px solid var(--border);
+      max-height: 200px;
+    }
+  .card-grid { grid-template-columns: 1fr; }
+  .topbar { padding: 1rem; }
+  .filters { width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <aside class="sidebar">
+    <a href="index.html" class="logo">Sign<span>ix</span></a>
+
+    <div class="nav-section">
+      <div class="nav-title">KSL Categories</div>
+      <a class="nav-link active" data-category="all">All Signs <span class="count" id="count-all">0</span></a>
+      <a class="nav-link" data-category="greetings">Greetings <span class="count" id="count-greetings">0</span></a>
+      <a class="nav-link" data-category="family">Family <span class="count" id="count-family">0</span></a>
+      <a class="nav-link" data-category="numbers">Numbers <span class="count" id="count-numbers">0</span></a>
+      <a class="nav-link" data-category="time">Time <span class="count" id="count-time">0</span></a>
+      <a class="nav-link" data-category="school">School <span class="count" id="count-school">0</span></a>
+      <a class="nav-link" data-category="grammar">Grammar <span class="count" id="count-grammar">0</span></a>
+      <a class="nav-link" data-category="storytelling">Storytelling <span class="count" id="count-storytelling">0</span></a>
+      <a class="nav-link" data-category="workplace">Workplace KSL <span class="count" id="count-workplace">0</span></a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-title">My Learning</div>
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="index.html#revision">Revision Deck</a>
+      <a class="nav-link" href="index.html#path">Fluency Path</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <nav class="topbar">
+      <a href="index.html">Home</a>
+      <a href="library.html" class="active">Library</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="about.html">About</a>
+      
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search signs...">
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-level="all">All Levels</button>
+        <button class="filter-btn" data-level="Beginner">Beginner</button>
+        <button class="filter-btn" data-level="Intermediate">Intermediate</button>
+        <button class="filter-btn" data-level="Advanced">Advanced</button>
+      </div>
+    </nav>
+
+    <div class="content">
+      <div class="page-header">
+        <h1 id="pageTitle">KSL Library</h1>
+        <p id="pageSubtitle">Browse all Kenyan Sign Language signs. Click any card to practice.</p>
+      </div>
+
+      <div id="categoriesContainer"></div>
+    </div>
+  </main>
+
+<script>
+  // KSL VIDEO DATABASE - Replace video URLs with your real KSL content
+  const KSL_LIBRARY = {
+    greetings: [
+      { 
+        id: "greetings-hello",
+        title: "Hello", 
+        gloss: "HABARI / HELLO", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Common greeting used any time of day"
+      },
+      { 
+        id: "greetings-morning",
+        title: "Good Morning", 
+        gloss: "HABARI ZA ASUBUHI", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Morning greeting until noon"
+      },
+      { 
+        id: "greetings-how-are-you",
+        title: "How are you?", 
+        gloss: "HABARI YAKO?", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Asking about someone's wellbeing"
+      },
+      { 
+        id: "greetings-fine",
+        title: "I'm Fine", 
+        gloss: "NIKO SALAMA / NIKO SAWA", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Response to 'How are you?'"
+      },
+      { 
+        id: "greetings-thank-you",
+        title: "Thank You", 
+        gloss: "ASANTE", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Expressing gratitude"
+      },
+      { 
+        id: "greetings-goodbye",
+        title: "Goodbye", 
+        gloss: "KWAHERI", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Parting farewell"
+      },
+    ],
+    family: [
+      { 
+        id: "family-mother",
+        title: "Mother", 
+        gloss: "MAMA", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Female parent"
+      },
+      { 
+        id: "family-father",
+        title: "Father", 
+        gloss: "BABA", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Male parent"
+      },
+      { 
+        id: "family-sister",
+        title: "Sister", 
+        gloss: "DADA", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Female sibling"
+      },
+      { 
+        id: "family-brother",
+        title: "Brother", 
+        gloss: "KAKA", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Male sibling"
+      },
+    ],
+    numbers: [
+      { 
+        id: "numbers-1-5",
+        title: "Numbers 1 to 5", 
+        gloss: "NAMBA 1-5", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Basic counting"
+      },
+      { 
+        id: "numbers-6-10",
+        title: "Numbers 6 to 10", 
+        gloss: "NAMBA 6-10", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Continue counting"
+      },
+    ],
+    time: [
+      { 
+        id: "time-today",
+        title: "Today", 
+        gloss: "LEO", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Current day"
+      },
+      { 
+        id: "time-tomorrow",
+        title: "Tomorrow", 
+        gloss: "KESHO", 
+        level: "Beginner", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Next day"
+      },
+    ],
+    school: [
+      { 
+        id: "school-teacher",
+        title: "Teacher", 
+        gloss: "MWALIMU", 
+        level: "Intermediate", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Educator"
+      },
+      { 
+        id: "school-student",
+        title: "Student", 
+        gloss: "MWANAFUNZI", 
+        level: "Intermediate", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Learner"
+      },
+    ],
+    grammar: [
+      { 
+        id: "grammar-question",
+        title: "Question Marker", 
+        gloss: "SWALI", 
+        level: "Intermediate", 
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        description: "Indicates a question"
+      },
+    ],
+    storytelling: [],
+    workplace: []
+  };
+
+  // State
+  let currentCategory = 'all';
+  let currentLevel = 'all';
+  let searchQuery = '';
+  let savedCards = JSON.parse(localStorage.getItem('signixSaved') || '[]');
+  let completedCards = JSON.parse(localStorage.getItem('signixCompleted') || '[]');
+  let revisionDeck = JSON.parse(localStorage.getItem('signixRevision') || '[]');
+
+  // Update counts
+  function updateCounts() {
+    let total = 0;
+    Object.entries(KSL_LIBRARY).forEach(([key, cards]) => {
+      const count = cards.length;
+      document.getElementById(`count-${key}`).textContent = count;
+      total += count;
+    });
+    document.getElementById('count-all').textContent = total;
+  }
+
+  // Filter cards
+  function getFilteredCards() {
+    let cards = [];
+    const categories = currentCategory === 'all'? Object.keys(KSL_LIBRARY) : [currentCategory];
+    
+    categories.forEach(cat => {
+      KSL_LIBRARY[cat].forEach(card => {
+        cards.push({ ...card, category: cat });
+      });
+    });
+
+    // Filter by level
+    if (currentLevel!== 'all') {
+      cards = cards.filter(c => c.level === currentLevel);
+    }
+
+    // Filter by search
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      cards = cards.filter(c => 
+        c.title.toLowerCase().includes(q) || 
+        c.gloss.toLowerCase().includes(q) ||
+        c.description.toLowerCase().includes(q)
+      );
+    }
+
+    return cards;
+  }
+
+  // Render
+  function renderLibrary() {
+    const container = document.getElementById('categoriesContainer');
+    const cards = getFilteredCards();
+
+    if (cards.length === 0) {
+      container.innerHTML = '<div class="empty-state"><p>No signs found. Try different filters.</p></div>';
+      return;
+    }
+
+    if (currentCategory === 'all') {
+      // Group by category
+      const grouped = {};
+      cards.forEach(card => {
+        if (!grouped[card.category]) grouped[card.category] = [];
+        grouped[card.category].push(card);
+      });
+
+      container.innerHTML = Object.entries(grouped).map(([cat, catCards]) => `
+        <div class="category" id="${cat}">
+          <div class="category-header">
+            <h2>${cat.charAt(0).toUpperCase() + cat.slice(1)}</h2>
+            <span class="category-count">${catCards.length} signs</span>
+          </div>
+          <div class="card-grid">
+            ${catCards.map(card => renderCard(card)).join('')}
+          </div>
+        </div>
+      `).join('');
+    } else {
+      // Single category
+      container.innerHTML = `
+        <div class="category">
+          <div class="card-grid">
+            ${cards.map(card => renderCard(card)).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    attachCardListeners();
+  }
+
+  function renderCard(card) {
+    const isSaved = savedCards.includes(card.id);
+    const isCompleted = completedCards.includes(card.id);
+    return `
+      <div class="video-card" data-id="${card.id}">
+        <div class="video-thumb" onclick="playVideo('${card.id}')">
+          <video poster="https://via.placeholder.com/640x360/1e293b/94a3b8?text=${encodeURIComponent(card.title)}" preload="metadata">
+            <source src="${card.video}" type="video/webm">
+          </video>
+          <span class="level-badge ${card.level.toLowerCase()}">${card.level}</span>
+          <div class="play-overlay">▶</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${card.title}</div>
+          <div class="card-gloss">${card.gloss}</div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="practiceCard('${card.id}', '${card.title}')">
+              ${isCompleted? '✓ Practice' : 'Practice'}
+            </button>
+            <button class="btn ${isSaved? 'btn-saved' : 'btn-secondary'}" onclick="toggleRevision('${card.id}', '${card.title}')">
+              ${isSaved? '★ Saved' : 'Save'}
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Card interactions
+  window.playVideo = function(id) {
+    const card = document.querySelector(`[data-id="${id}"] video`);
+    if (card.paused) {
+      card.play();
+    } else {
+      card.pause();
+    }
+  }
+
+  window.practiceCard = function(id, title) {
+    if (!completedCards.includes(id)) {
+      completedCards.push(id);
+      localStorage.setItem('signixCompleted', JSON.stringify(completedCards));
+    }
+    alert(`Great! Practice "${title}" in front of a mirror 5 times.`);
+    renderLibrary();
+  }
+
+  window.toggleRevision = function(id, title) {
+    const idx = revisionDeck.findIndex(c => c.id === id);
+    if (idx > -1) {
+      revisionDeck.splice(idx, 1);
+    } else {
+      revisionDeck.push({ id, title, due: Date.now() });
+    }
+    localStorage.setItem('signixRevision', JSON.stringify(revisionDeck));
+    
+    if (!savedCards.includes(id)) {
+      savedCards.push(id);
+    } else {
+      savedCards = savedCards.filter(c => c!== id);
+    }
+    localStorage.setItem('signixSaved', JSON.stringify(savedCards));
+    renderLibrary();
+  }
+
+  function attachCardListeners() {
+    document.querySelectorAll('.video-thumb video').forEach(video => {
+      video.addEventListener('mouseenter', function() {
+        this.play();
+      });
+      video.addEventListener('mouseleave', function() {
+        this.pause();
+        this.currentTime = 0;
+      });
+    });
+  }
+
+  // Event listeners
+  document.querySelectorAll('[data-category]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      currentCategory = link.dataset.category;
+      document.getElementById('pageTitle').textContent = 
+        currentCategory === 'all'? 'KSL Library' : currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+      renderLibrary();
+    });
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentLevel = btn.dataset.level;
+      renderLibrary();
+    });
+  });
+
+  document.getElementById('searchInput').addEventListener('input', e => {
+    searchQuery = e.target.value;
+    renderLibrary();
+  });
+
+  // Init
+  updateCounts();
+  renderLibrary();
+</script>
+</body>
+</html>
