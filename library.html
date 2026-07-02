@@ -1,419 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KSL Library - Signix</title>
-   <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KSL Library - Signix</title>
+  <link rel="stylesheet" href="css/styles.css?v=3">
 </head>
 <body>
-  <aside class="sidebar">
-    <a href="index.html" class="logo">Sign<span>ix</span></a>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="logo">
+        <img src="Signix-logo.png" alt="Signix" style="height: 40px;">
+      </a>
+      <div class="nav-section">
+        <div class="nav-title">KSL Categories</div>
+        <button class="nav-link active" data-category="all">All Signs</button>
+        <button class="nav-link" data-category="greetings">Greetings</button>
+        <button class="nav-link" data-category="family">Family</button>
+        <button class="nav-link" data-category="numbers">Numbers</button>
+        <button class="nav-link" data-category="time">Time</button>
+        <button class="nav-link" data-category="school">School</button>
+        <button class="nav-link" data-category="grammar">Grammar</button>
+      </div>
+    </aside>
 
-    <div class="nav-section">
-      <div class="nav-title">KSL Categories</div>
-      <a class="nav-link active" data-category="all">All Signs <span class="count" id="count-all">0</span></a>
-      <a class="nav-link" data-category="greetings">Greetings <span class="count" id="count-greetings">0</span></a>
-      <a class="nav-link" data-category="family">Family <span class="count" id="count-family">0</span></a>
-      <a class="nav-link" data-category="numbers">Numbers <span class="count" id="count-numbers">0</span></a>
-      <a class="nav-link" data-category="time">Time <span class="count" id="count-time">0</span></a>
-      <a class="nav-link" data-category="school">School <span class="count" id="count-school">0</span></a>
-      <a class="nav-link" data-category="grammar">Grammar <span class="count" id="count-grammar">0</span></a>
-      <a class="nav-link" data-category="storytelling">Storytelling <span class="count" id="count-storytelling">0</span></a>
-      <a class="nav-link" data-category="workplace">Workplace KSL <span class="count" id="count-workplace">0</span></a>
-    </div>
+    <main class="main">
+      <nav class="topbar">
+        <div class="topbar-links">
+          <a href="index.html">Home</a>
+          <a href="library.html" class="active">Library</a>
+          <a href="videos.html">Practice Theater</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search signs...">
+        </div>
+      </nav>
 
-    <div class="nav-section">
-      <div class="nav-title">My Learning</div>
-      <a class="nav-link" href="dashboard.html">Dashboard</a>
-      <a class="nav-link" href="index.html#revision">Revision Deck</a>
-      <a class="nav-link" href="index.html#path">Fluency Path</a>
-    </div>
-  </aside>
-
-  <main class="main">
-    <nav class="topbar">
-      <a href="index.html">Home</a>
-      <a href="library.html" class="active">Library</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="about.html">About</a>
-      
-      <div class="search-container">
-        <span class="search-icon">🔍</span>
-        <input type="text" class="search-input" id="searchInput" placeholder="Search signs...">
+      <div class="content">
+        <div class="page-header">
+          <h1>KSL Library</h1>
+          <p class="subtext">Browse all Kenyan Sign Language signs. Click any card to practice.</p>
+        </div>
+        <div id="categoriesContainer"></div>
       </div>
 
-      <div class="filters">
-        <button class="filter-btn active" data-level="all">All Levels</button>
-        <button class="filter-btn" data-level="Beginner">Beginner</button>
-        <button class="filter-btn" data-level="Intermediate">Intermediate</button>
-        <button class="filter-btn" data-level="Advanced">Advanced</button>
-      </div>
-    </nav>
+      <footer class="footer">
+        <p class="text-muted text-center">
+          Made by <strong>NEXORA TECHNOLOGIES</strong> - 0790357975
+        </p>
+      </footer>
+    </main>
+  </div>
 
-    <div class="content">
-      <div class="page-header">
-        <h1 id="pageTitle">KSL Library</h1>
-        <p id="pageSubtitle">Browse all Kenyan Sign Language signs. Click any card to practice.</p>
-      </div>
-
-      <div id="categoriesContainer"></div>
-    </div>
-  </main>
-
-<script>
-  // KSL VIDEO DATABASE - Replace video URLs with your real KSL content
-  const KSL_LIBRARY = {
-    greetings: [
-      { 
-        id: "greetings-hello",
-        title: "Hello", 
-        gloss: "HABARI / HELLO", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Common greeting used any time of day"
-      },
-      { 
-        id: "greetings-morning",
-        title: "Good Morning", 
-        gloss: "HABARI ZA ASUBUHI", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Morning greeting until noon"
-      },
-      { 
-        id: "greetings-how-are-you",
-        title: "How are you?", 
-        gloss: "HABARI YAKO?", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Asking about someone's wellbeing"
-      },
-      { 
-        id: "greetings-fine",
-        title: "I'm Fine", 
-        gloss: "NIKO SALAMA / NIKO SAWA", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Response to 'How are you?'"
-      },
-      { 
-        id: "greetings-thank-you",
-        title: "Thank You", 
-        gloss: "ASANTE", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Expressing gratitude"
-      },
-      { 
-        id: "greetings-goodbye",
-        title: "Goodbye", 
-        gloss: "KWAHERI", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Parting farewell"
-      },
-    ],
-    family: [
-      { 
-        id: "family-mother",
-        title: "Mother", 
-        gloss: "MAMA", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Female parent"
-      },
-      { 
-        id: "family-father",
-        title: "Father", 
-        gloss: "BABA", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Male parent"
-      },
-      { 
-        id: "family-sister",
-        title: "Sister", 
-        gloss: "DADA", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Female sibling"
-      },
-      { 
-        id: "family-brother",
-        title: "Brother", 
-        gloss: "KAKA", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Male sibling"
-      },
-    ],
-    numbers: [
-      { 
-        id: "numbers-1-5",
-        title: "Numbers 1 to 5", 
-        gloss: "NAMBA 1-5", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Basic counting"
-      },
-      { 
-        id: "numbers-6-10",
-        title: "Numbers 6 to 10", 
-        gloss: "NAMBA 6-10", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Continue counting"
-      },
-    ],
-    time: [
-      { 
-        id: "time-today",
-        title: "Today", 
-        gloss: "LEO", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Current day"
-      },
-      { 
-        id: "time-tomorrow",
-        title: "Tomorrow", 
-        gloss: "KESHO", 
-        level: "Beginner", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Next day"
-      },
-    ],
-    school: [
-      { 
-        id: "school-teacher",
-        title: "Teacher", 
-        gloss: "MWALIMU", 
-        level: "Intermediate", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Educator"
-      },
-      { 
-        id: "school-student",
-        title: "Student", 
-        gloss: "MWANAFUNZI", 
-        level: "Intermediate", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Learner"
-      },
-    ],
-    grammar: [
-      { 
-        id: "grammar-question",
-        title: "Question Marker", 
-        gloss: "SWALI", 
-        level: "Intermediate", 
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
-        description: "Indicates a question"
-      },
-    ],
-    storytelling: [],
-    workplace: []
-  };
-
-  // State
-  let currentCategory = 'all';
-  let currentLevel = 'all';
-  let searchQuery = '';
-  let savedCards = JSON.parse(localStorage.getItem('signixSaved') || '[]');
-  let completedCards = JSON.parse(localStorage.getItem('signixCompleted') || '[]');
-  let revisionDeck = JSON.parse(localStorage.getItem('signixRevision') || '[]');
-
-  // Update counts
-  function updateCounts() {
-    let total = 0;
-    Object.entries(KSL_LIBRARY).forEach(([key, cards]) => {
-      const count = cards.length;
-      document.getElementById(`count-${key}`).textContent = count;
-      total += count;
-    });
-    document.getElementById('count-all').textContent = total;
-  }
-
-  // Filter cards
-  function getFilteredCards() {
-    let cards = [];
-    const categories = currentCategory === 'all'? Object.keys(KSL_LIBRARY) : [currentCategory];
-    
-    categories.forEach(cat => {
-      KSL_LIBRARY[cat].forEach(card => {
-        cards.push({ ...card, category: cat });
-      });
-    });
-
-    // Filter by level
-    if (currentLevel!== 'all') {
-      cards = cards.filter(c => c.level === currentLevel);
-    }
-
-    // Filter by search
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      cards = cards.filter(c => 
-        c.title.toLowerCase().includes(q) || 
-        c.gloss.toLowerCase().includes(q) ||
-        c.description.toLowerCase().includes(q)
-      );
-    }
-
-    return cards;
-  }
-
-  // Render
-  function renderLibrary() {
-    const container = document.getElementById('categoriesContainer');
-    const cards = getFilteredCards();
-
-    if (cards.length === 0) {
-      container.innerHTML = '<div class="empty-state"><p>No signs found. Try different filters.</p></div>';
-      return;
-    }
-
-    if (currentCategory === 'all') {
-      // Group by category
-      const grouped = {};
-      cards.forEach(card => {
-        if (!grouped[card.category]) grouped[card.category] = [];
-        grouped[card.category].push(card);
-      });
-
-      container.innerHTML = Object.entries(grouped).map(([cat, catCards]) => `
-        <div class="category" id="${cat}">
-          <div class="category-header">
-            <h2>${cat.charAt(0).toUpperCase() + cat.slice(1)}</h2>
-            <span class="category-count">${catCards.length} signs</span>
-          </div>
-          <div class="card-grid">
-            ${catCards.map(card => renderCard(card)).join('')}
-          </div>
-        </div>
-      `).join('');
-    } else {
-      // Single category
-      container.innerHTML = `
-        <div class="category">
-          <div class="card-grid">
-            ${cards.map(card => renderCard(card)).join('')}
-          </div>
-        </div>
-      `;
-    }
-
-    attachCardListeners();
-  }
-
-  function renderCard(card) {
-    const isSaved = savedCards.includes(card.id);
-    const isCompleted = completedCards.includes(card.id);
-    return `
-      <div class="video-card" data-id="${card.id}">
-        <div class="video-thumb" onclick="playVideo('${card.id}')">
-          <video poster="https://via.placeholder.com/640x360/1e293b/94a3b8?text=${encodeURIComponent(card.title)}" preload="metadata">
-            <source src="${card.video}" type="video/webm">
-          </video>
-          <span class="level-badge ${card.level.toLowerCase()}">${card.level}</span>
-          <div class="play-overlay">▶</div>
-        </div>
-        <div class="card-body">
-          <div class="card-title">${card.title}</div>
-          <div class="card-gloss">${card.gloss}</div>
-          <div class="card-actions">
-            <button class="btn btn-primary" onclick="practiceCard('${card.id}', '${card.title}')">
-              ${isCompleted? '✓ Practice' : 'Practice'}
-            </button>
-            <button class="btn ${isSaved? 'btn-saved' : 'btn-secondary'}" onclick="toggleRevision('${card.id}', '${card.title}')">
-              ${isSaved? '★ Saved' : 'Save'}
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  // Card interactions
-  window.playVideo = function(id) {
-    const card = document.querySelector(`[data-id="${id}"] video`);
-    if (card.paused) {
-      card.play();
-    } else {
-      card.pause();
-    }
-  }
-
-  window.practiceCard = function(id, title) {
-    if (!completedCards.includes(id)) {
-      completedCards.push(id);
-      localStorage.setItem('signixCompleted', JSON.stringify(completedCards));
-    }
-    alert(`Great! Practice "${title}" in front of a mirror 5 times.`);
-    renderLibrary();
-  }
-
-  window.toggleRevision = function(id, title) {
-    const idx = revisionDeck.findIndex(c => c.id === id);
-    if (idx > -1) {
-      revisionDeck.splice(idx, 1);
-    } else {
-      revisionDeck.push({ id, title, due: Date.now() });
-    }
-    localStorage.setItem('signixRevision', JSON.stringify(revisionDeck));
-    
-    if (!savedCards.includes(id)) {
-      savedCards.push(id);
-    } else {
-      savedCards = savedCards.filter(c => c!== id);
-    }
-    localStorage.setItem('signixSaved', JSON.stringify(savedCards));
-    renderLibrary();
-  }
-
-  function attachCardListeners() {
-    document.querySelectorAll('.video-thumb video').forEach(video => {
-      video.addEventListener('mouseenter', function() {
-        this.play();
-      });
-      video.addEventListener('mouseleave', function() {
-        this.pause();
-        this.currentTime = 0;
-      });
-    });
-  }
-
-  // Event listeners
-  document.querySelectorAll('[data-category]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      currentCategory = link.dataset.category;
-      document.getElementById('pageTitle').textContent = 
-        currentCategory === 'all'? 'KSL Library' : currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
-      renderLibrary();
-    });
-  });
-
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentLevel = btn.dataset.level;
-      renderLibrary();
-    });
-  });
-
-  document.getElementById('searchInput').addEventListener('input', e => {
-    searchQuery = e.target.value;
-    renderLibrary();
-  });
-
-  // Init
-  updateCounts();
-  renderLibrary();
-</script>
+  <script type="module" src="js/library.js"></script>
 </body>
 </html>
