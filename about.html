@@ -128,4 +128,157 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size:
+    font-size: 3rem;
+    font-weight: 700;
+    color: #052e16;
+  }
+ .founder-info h3 { 
+    margin: 0 0 0.5rem 0; 
+    font-size: 1.5rem;
+    color: var(--text);
+  }
+ .founder-title {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+ .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+ .feature {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+ .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+ .cta-box {
+    background: linear-gradient(135deg, #1e3a2f, #1e293b);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 3rem 0;
+    text-align: center;
+  }
+ .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--accent);
+    color: #052e16;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    body { flex-direction: column; }
+   .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+   .founder-card { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+  <aside class="sidebar">
+    <a href="index.html" class="logo">Sign<span>ix</span></a>
+
+    <div class="nav-section">
+      <div class="nav-title">Categories</div>
+      <a class="nav-link" href="index.html#greetings">Greetings</a>
+      <a class="nav-link" href="index.html#family">Family</a>
+      <a class="nav-link" href="index.html#numbers">Numbers</a>
+      <a class="nav-link" href="index.html#time">Time</a>
+      <a class="nav-link" href="index.html#school">School</a>
+      <a class="nav-link" href="index.html#grammar">Grammar</a>
+      <a class="nav-link" href="index.html#storytelling">Storytelling</a>
+      <a class="nav-link" href="index.html#workplace">Workplace KSL</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-title">Tools</div>
+      <a class="nav-link" href="index.html#revision">Revision Deck</a>
+      <a class="nav-link" href="index.html#path">Fluency Path</a>
+      <a class="nav-link active" href="about.html">About</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <nav class="topbar">
+      <a href="index.html">Home</a>
+      <a href="index.html#path">Fluency Path</a>
+      <a href="index.html#revision">Revision Deck</a>
+      <a href="about.html" class="active">About</a>
+    </nav>
+
+    <div class="content">
+      <h1>About Signix</h1>
+      <p class="highlight">Signix is a deaf-first learning platform built to help anyone achieve fluency in Kenyan Sign Language.</p>
+      
+      <p>We believe KSL should be accessible to everyone — deaf learners, parents of deaf children, teachers, interpreters, and allies. Like w3schools gives structure for code, and Khan Academy gives progression for math, Signix gives both for KSL.</p>
+
+      <h2>Our Mission</h2>
+      <p>Break down barriers to KSL fluency. No audio required. No assumptions. Just clear video cards, organized categories, and a revision system that respects how deaf people actually learn.</p>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-icon">👋</div>
+          <h3>Deaf-First Design</h3>
+          <p>Every feature is built visual-first. Large buttons, high contrast, no audio dependency. KSL videos with text gloss in English + Kiswahili.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📚</div>
+          <h3>Structured Learning</h3>
+          <p>Categories from Greetings to Workplace KSL. Follow the Fluency Path from Beginner to Advanced, or jump to what you need.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔄</div>
+          <h3>Smart Revision</h3>
+          <p>Spaced repetition brings back signs you’re about to forget. Add any card to your Revision Deck and master it over time.</p>
+        </div>
+      </div>
+
+      <h2>Meet the Founder</h2>
+      <div class="founder-card">
+        <div class="founder-avatar">PW</div>
+        <div class="founder-info">
+          <h3>Patience Wambui</h3>
+          <div class="founder-title">Founder & Lead Advocate, Signix</div>
+          <p>Patience started Signix after seeing how hard it was for deaf students and their families to find structured, accessible KSL resources online. Her vision: a platform where KSL is taught with the same clarity and rigor as any other language — but designed by and for the deaf community.</p>
+        </div>
+      </div>
+
+      <h2>How Signix Works</h2>
+      <h3>1. Learn by Category</h3>
+      <p>Pick a topic like Family or Numbers. Each video card shows a native signer demonstrating the sign, plus English/Kiswahili gloss. Hover to preview, click to practice.</p>
+      
+      <h3>2. Build Your Revision Deck</h3>
+      <p>Struggling with a sign? Click “Add to Revision”. Signix will remind you to review it later using spaced repetition — the same method used for medical school and language learning.</p>
+
+      <h3>3. Follow the Fluency Path</h3>
+      <p>Complete Beginner categories to unlock Intermediate. Master Intermediate to reach Advanced. Track your progress and celebrate milestones.</p>
+
+      <h2>Community & Accuracy</h2>
+      <p>KSL has regional dialects and evolving usage. Signix partners with native KSL signers to review all content. If you’re a fluent signer, you’ll soon be able to submit variant signs for moderation through our community portal.</p>
+
+      <div class="cta-box">
+        <h3>Ready to start your KSL journey?</h3>
+        <p style="color:var(--text);margin-bottom:0;">Join thousands learning KSL the deaf-first way.</p>
+        <a href="index.html" class="btn">Start Learning Free</a>
+      </div>
+
+      <p style="margin-top:3rem;font-size:0.9rem;color:var(--muted);">
+        Signix © 2026. Built for KSL learners in Kenya and beyond. 
+        <br>For partnerships or content contributions: <span class="highlight">contact@signix.co.ke</span>
+      </p>
+    </div>
+  </main>
+</body>
+</html>
