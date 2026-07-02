@@ -1,1 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Signix</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #22c55e;
+    --accent2: #3b82f6;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+    --error: #ef4444;
+  }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
 
+  .auth-container {
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .logo-section {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .logo-img {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    display: block;
+  }
+  .logo-text {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .logo-text span { color: var(--accent2); }
+  .tagline {
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .auth-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .auth-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  .auth-card .subtext {
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .form-group.error input {
+    border-color: var(--error);
+  }
+  .error-msg {
+    color: var(--error);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    display: none;
+  }
+  .form-group.error .error-msg { display: block; }
+
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+  }
+  .remember-me input { width: auto; }
+  .forgot-link {
+    color: var(--accent2);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .forgot-link:hover { text-decoration: underline; }
+
+  .btn {
+    width: 100%;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #052e16;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+  .divider::before,.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .btn-google {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .btn-google:hover { background: var(--card); }
+
+  .auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .auth-footer a {
+    color: var(--accent2);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .auth-footer a:hover { text-decoration: underline; }
+
+  .alert {
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    display: none;
+  }
+  .alert-error {
+    background: #3f1f1f;
+    border: 1px solid var(--error);
+    color: #fecaca;
+  }
+  .alert-success {
+    background: #1e3a2f;
+    border: 1px solid var(--accent);
+    color: #bbf7d0;
+  }
+
+  @media (max-width: 480px) {
+    .auth-card { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="logo-section">
+      <img src="images/Signix-logo.png" alt="Signix Logo" class="logo-img">
+      <div class="logo-text">Sign<span>ix</span></div>
+      <p class="tagline">Welcome back to KSL learning</p>
+    </div>
+
+    <div class="auth-card">
+      <h1>Log In</h1>
+      <p class="subtext">Continue your KSL fluency journey</p>
+
+      <div class="alert alert-error" id="errorAlert"></div>
+      <div class="alert alert-success" id="successAlert"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          <div class="error-msg">Please enter a valid email</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <div class="error-msg">Password is required</div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            Remember me
+          </label>
+          <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submitBtn">Log In</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <button type="button" class="btn-google" id="googleBtn">
+        <svg width="18" height="18" viewBox="0 0 18 18">
+          <path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z"/>
+          <path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z"/>
+          <path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z"/>
+          <path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="register.html">Sign up</a>
+      </div>
+    </div>
+  </div>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
+    sendPasswordResetEmail,
+    setPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence
+  } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+  // Replace with your config from js/firebase.js
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const form = document.getElementById('loginForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const errorAlert = document.getElementById('errorAlert');
+  const successAlert = document.getElementById('successAlert');
+
+  function showError(msg) {
+    errorAlert.textContent = msg;
+    errorAlert.style.display = 'block';
+    successAlert.style.display = 'none';
+  }
+
+  function showSuccess(msg) {
+    successAlert.textContent = msg;
+    successAlert.style.display = 'block';
+    errorAlert.style.display = 'none';
+  }
+
+  function validateForm() {
+    let valid = true;
+    document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+
+    const email = form.email.value.trim();
+    const password = form.password.value;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      form.email.parentElement.classList.add('error');
+      valid = false;
+    }
+
+    if (!password) {
+      form.password.parentElement.classList.add('error');
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  // Email/Password Login
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorAlert.style.display = 'none';
+
+    if (!validateForm()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging in...';
+
+    try {
+      // Set persistence based on "Remember me"
+      const persistence = form.remember.checked? browserLocalPersistence : browserSessionPersistence;
+      await setPersistence(auth, persistence);
+
+      await signInWithEmailAndPassword(auth, form.email.value.trim(), form.password.value);
+      
+      showSuccess('Login successful! Redirecting...');
+      setTimeout(() => window.location.href = 'dashboard.html', 1000);
+
+    } catch (error) {
+      let msg = 'Login failed. Please try again.';
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+        msg = 'Invalid email or password. Please check and try again.';
+      } else if (error.code === 'auth/too-many-requests') {
+        msg = 'Too many failed attempts. Please try again later.';
+      } else if (error.code === 'auth/user-disabled') {
+        msg = 'This account has been disabled. Contact support.';
+      }
+      showError(msg);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Log In';
+    }
+  });
+
+  // Google Sign In
+  document.getElementById('googleBtn').addEventListener('click', async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      window.location.href = 'dashboard.html';
+    } catch (error) {
+      if (error.code!== 'auth/popup-closed-by-user') {
+        showError('Google sign-in failed. Please try again.');
+      }
+    }
+  });
+
+  // Forgot Password
+  document.getElementById('forgotLink').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = form.email.value.trim();
+    
+    if (!email) {
+      showError('Please enter your email address first');
+      form.email.focus();
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      showSuccess('Password reset email sent! Check your inbox.');
+    } catch (error) {
+      if (error.code === 'auth/user-not-found') {
+        showError('No account found with that email');
+      } else {
+        showError('Failed to send reset email. Please try again.');
+      }
+    }
+  });
+
+  // Clear errors on input
+  form.querySelectorAll('input').forEach(field => {
+    field.addEventListener('input', function() {
+      this.parentElement.classList.remove('error');
+      errorAlert.style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>
